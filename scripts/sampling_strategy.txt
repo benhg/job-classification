@@ -1,0 +1,132 @@
+Sampling strategy for Citation Behavior project
+
+-----------------------------------------------------------------------------
+
+INTRODUCTION
+
+This document outlines the sampling strategy for the citation behaviour
+project. What we want is data that allows us to classify people's citations
+as either influential, rhetorical, or negative. In order to do this, what
+we need a few things:
+
+-----------------------------------------------------------------------------
+
+RESOURCES WE NEED TO GENERATE
+
+    A) a list of people to survey,
+    B) a list of their publications, 
+    C) a list of the publications each of the members of 
+    (B) cites
+    Such that
+        (C) only contains a papers that are also present in a lot of other
+        people’s (C)
+
+    Essentially, we need to generate A) such that we 1) actually have their
+    email, 2) their papers are well cited, and verify that there is a lot of 
+    "overlap" (cross-citations) between the members of A).
+
+    The initial thought was to generate C, then sample some papers to create
+    some of B, take the authors of all of those papers in the "provisional"
+    B and then fill in the rest of their papers to make B complete.
+
+    Another thing we want to be sure to try and do is generate as large a 
+    sample as possible (if we are asking n people, we want answers about 
+    more than n citations) while still having some "overlap" (we want at 
+    least a few papers that we have more than one classification of)
+
+----------------------------------------------------------------------------
+
+INITIAL SAMPLING STRATEGY
+
+In order to do this, we want to roughly follow the following steps:
+    
+    1. Select a bunch of papers that are highly cited (have more raw
+    citations than a certain threshold) in the last, say 5 years
+
+    2. Select all the lead authors of papers who cite those papers and
+
+    3. randomly select N for who we have an email address
+
+However, it turns out this strategy does not guarantee a lot of cross-
+citation among our list A, so we had to reconsider the strategy.
+
+A simple modification of this approach made possible by the acquisition 
+of the graph-based WoS data allows this problem to be fixed, but it also
+requires computing across the entire billion plus edge database for each of 
+500 authors, and even assuming perfect parallization (which is not possible)
+that would still take months of computation.
+
+-----------------------------------------------------------------------------
+
+REVISED PAPER BASED SAMPLE STRATEGY
+
+It quickly became apparent that it would be impossible to do an author based 
+sampling strategy, because there simply isn't enough compute time for that. 
+The compromise we made was to take a paper-based approach where we do the 
+following:
+
+    1. Select all papers that are "acceptable" (that is to establish our
+    sampling frame)
+
+        To do this, we:
+
+        a. Broke down all of the papers in the WoS by field (the column
+        "subject" in the WoS database)
+
+        b. Selected all papers for which we have the first author's email
+        address in each field and save them to separate files
+
+    2. After we have our "acceptable" papers, there were a couple of options
+    for where to go. We could essentially:
+
+        a. randomly select n authors from each subject and hope that they
+        cross-cite each other a decent amount and selectively throw out
+        sections of the selection until the sample is good
+
+        b. Perform some more complex strategy that will ensure a better
+        sample.
+
+    3. After experimenting with option a for some time, we concluded that 
+    it would take far too many passes to select a good sample and we should
+    try something more complex. What we came up with was the following:
+
+        For each field:
+
+        a. rank all of the papers by citation count and group into 100 bins
+        of equal size
+
+        b. define some function f(n) such that we select f(n) papers from
+        bin n to using the property of the bins of higher n 
+        (more cited papers) that there will be a higher probability of cross
+        citation in the higher cited bins. 
+
+        That is to say, we selected more
+        papers from bins with more citations to ensure that there is some
+        cross citation, while selecting enough from lower bins such that 
+        the size of the sample is as large as possible (this satisfies
+        our variability property from above)
+
+----------------------------------------------------------------------------
+
+It was determined that the sample strategy above was a computationally 
+efficient way to generate an unbiased sample with enough variability for
+our survey. 
+
+Essentially, we ended up with B) and not A) because we decided to sample 
+from only one paper per person.
+
+----------------------------------------------------------------------------
+
+The code which accomplishes this strategy is split between three files:
+format_csv_for_author.py (2 files because one needs to be run in the secure 
+enclave and one cannot be), and 
+generate_sampling_distribution.py,
+
+----------------------------------------------------------------------------
+
+
+
+
+
+
+

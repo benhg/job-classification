@@ -73,7 +73,8 @@ p6.py,cpu
 untitled.py,network
 generate_sampling_distribution.py,mem
 p2.py,cpu
-cloudform.py,networkbasic_python.py,other
+cloudform.py,network
+basic_python.py,other
 quarkconfinement.py,cpu
 primes.py,cpu
 7.5.py,cpu

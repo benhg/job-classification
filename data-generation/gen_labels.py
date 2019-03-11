@@ -9,3 +9,31 @@ quickly.
 
 It should also generate/add to the data file which is generated
 """
+import glob
+import csv
+
+DATA_FILE = "job_labels.csv"
+
+def load_scripts(script_dir="scripts"):
+	directory = f"{script_dir}/*.py"
+	scripts = glob.glob(directory)
+	return scripts
+
+def label_script(script, label):
+	with open(DATA_FILE, "a") as fh:
+		print(script.split("/")[-1])
+		writer = csv.DictWriter(fh, fieldnames=["file", "class"])
+		writer.writerow({"file": script.split("/")[-1], "class": label})
+
+def get_script_data(script):
+	type = input(script+"\n"+"cpu, mem, network, io, other\n")
+	return script, type
+
+def get_and_write_all():
+	scripts = load_scripts()
+	for script1 in scripts:
+		script, cat = get_script_data(script1)
+		label_script(script, cat)
+
+if __name__ == '__main__':
+	get_and_write_all()

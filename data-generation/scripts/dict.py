@@ -1,4 +1,4 @@
-"""De-duplicates coverage dictionaries. This needed to exist because of an 
+ """De-duplicates coverage dictionaries. This needed to exist because of an 
 unfortunate error where multiple copies of the coverage dictionary were copied 
 to the same file"""
 import json

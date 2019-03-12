@@ -155,7 +155,7 @@ p15.py,cpu
 fibeven.py,cpu
 p31.py,cpu
 cython_p14.py,cpu
-p11.py,cpucpu
+p11.py,cpu
 get_data copy.py,network
 udpserver.py,io
 smallMultiple.py,cpu

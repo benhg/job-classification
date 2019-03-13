@@ -10,75 +10,61 @@ and add those "tags" to a data file about them.
 import ast
 import pprint
 
+class ASTParser:
 
-def get_for_count(script):
-    numfors = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        if isinstance(stmt, ast.For):
-            numfors += 1
-    return numfors
+    def __init__(self, script):
+        self.tree = ""
+        with open(f"scripts/{script}" , "r") as fh:
+            self.tree = ast.parse(fh.read())
 
-def get_while_count(script):
-    whiles = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        if isinstance(stmt, ast.While):
-            whiles += 1
-    return whiles
+    def get_for_count(self):
+        numfors = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.For):
+                numfors += 1
+        return numfors
 
-def get_loop_count(script):
-    return get_for_count(script) + get_while_count(script)
+    def get_while_count(self):
+        whiles = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.While):
+                whiles += 1
+        return whiles
 
-def get_function_defs(script):
-    defs = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        if isinstance(stmt, ast.FunctionDef):
-            defs += 1
-            print(stmt)
-    return defs
+    def get_loop_count(self):
+        return get_for_count() + get_while_count()
+
+    def get_function_defs(self):
+        defs = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.FunctionDef):
+                defs += 1
+        return defs
 
 
-def get_function_calls(script):
-    calls = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        if isinstance(stmt, ast.Call):
-            calls += 1
-            print(stmt)
-    return calls
+    def get_function_calls(self):
+        calls = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.Call):
+                calls += 1
+        return calls
 
 
-def get_loads(script):
-    loads = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        if isinstance(stmt, ast.Load):
-            loads += 1
-            print(stmt)
-    return loads
+    def get_loads(self):
+        loads = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.Load):
+                loads += 1
+        return loads
 
-def get_deepest_stmt(script, depth=0):
-    depth = 0
-    tree = ""
-    with open(f"scripts/{script}" , "r") as fh:
-        tree = ast.parse(fh.read())
-    for stmt in ast.walk(tree):
-        pass
+    def get_deepest_stmt(self):
+        depth = 0
+        for stmt in ast.walk(self.tree):
+            pass
 
 
 
 if __name__ == '__main__':
-    print(get_function_calls("p7.py"))
+    p = ASTParser("p7.py")
+    print(p.get_function_calls())
 

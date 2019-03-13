@@ -8,7 +8,8 @@ This script should process a python "job" (mostly just python scripts for now)
 and add those "tags" to a data file about them.
 """
 import ast
-import pprint
+import csv
+import numpy as np
 
 class ASTParser:
 
@@ -61,6 +62,14 @@ class ASTParser:
         depth = 0
         for stmt in ast.walk(self.tree):
             pass
+        return 0
+
+    def get_asmts(self):
+        asm = 0
+        for stmt in ast.walk(self.tree):
+            if isinstance(stmt, ast.Assign):
+                asm += 1
+        return asm
 
 
 

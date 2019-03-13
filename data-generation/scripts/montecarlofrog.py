@@ -40,9 +40,9 @@ def monteCarlo():
     endTime=time.time()
     elapsed=endTime-startTime
 
-    print "If the frog jumps %s times, it will land in the original circle  approximately %s times, representing a success rate of %s"%(numJumps,int(numSuccesses),successRate)
+    print("If the frog jumps %s times, it will land in the original circle  approximately %s times, representing a success rate of %s"%(numJumps,int(numSuccesses),successRate))
     outfile.write("If the frog jumps %s times, it will land in the original circle  approximately %s times, representing a success rate of %s\n"%(numJumps,int(numSuccesses),successRate))
-    print "%s trials of %s jumps took %s seconds"%(numTries,numJumps,elapsed)
+    print("%s trials of %s jumps took %s seconds"%(numTries,numJumps,elapsed))
     logfile.write("%s trials of %s jumps took %s seconds"%(numTries,numJumps,elapsed))
     outfile.close()
     logfile.close()

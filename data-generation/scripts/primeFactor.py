@@ -12,4 +12,4 @@ def primes(n):
        primfac.append(n)
     return primfac
 
-print primes(bigNumber)
+print(primes(bigNumber))

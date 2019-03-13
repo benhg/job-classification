@@ -5,6 +5,6 @@ def fib(n):
     return a
 for i in range(19999):
 	if len(str(fib(i)))>=1000:
-		print i
-		print fib(i)
+		print(i)
+		print(fib(i))
 		break

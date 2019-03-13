@@ -57,7 +57,7 @@ def integrated_field(x, y, z, I):
     return I*field
 
 
-print("Magnetic field at (x,y,z)=(1,4,7): ", integrated_field(1, 4, 7, 1))
+print(("Magnetic field at (x,y,z)=(1,4,7): ", integrated_field(1, 4, 7, 1)))
 
 
 print("Now, we will re-use the old code, to calculate at a different point using the adaptive trapezoidal method")
@@ -94,8 +94,8 @@ def adaptive_trapezoidal(f, a, b, delta):
             I_1 = next_int
 
 
-print("Magnetic field at (x,y,z)=(1,2,5) (calculated with adaptive method): ",
-      adaptive_integrated_field(1, 2, 5, 1, .0001))
+print(("Magnetic field at (x,y,z)=(1,2,5) (calculated with adaptive method): ",
+      adaptive_integrated_field(1, 2, 5, 1, .0001)))
 
 
 print("Now, we will create a density plot of this information, using (x,y,z)=(x,y,1) (THIS IS SLOW)")

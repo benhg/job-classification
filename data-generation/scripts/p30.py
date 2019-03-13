@@ -12,4 +12,4 @@ for i in range(2,335000,1):
 	if sum == i:
 		j +=i
 
-print j
+print(j)

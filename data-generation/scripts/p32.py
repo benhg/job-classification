@@ -6,4 +6,4 @@ for i in range(2,  60):
     for j in range(start, 10000//i):
         if is_pandigital(str(i) + str(j) + str(i*j)): p.add(i*j)
 
-print "Sum of products =", sum(p)
+print("Sum of products =", sum(p))

@@ -24,4 +24,4 @@ for i in range(1,9,1):
 
 
 denomproduct/=(gcd(numproduct,denomproduct))
-print denomproduct*numproduct
+print(denomproduct*numproduct)

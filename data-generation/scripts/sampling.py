@@ -15,11 +15,11 @@ for frame in framelist:
 	males=[]
 	females=[]
 	while len(males)<10 or len(females)<10:
-		randomIndex=rdm.choice(xrange(0,len(frame),1))
-		print frame["Gender"][randomIndex]
+		randomIndex=rdm.choice(range(0,len(frame),1))
+		print(frame["Gender"][randomIndex])
 		if (not pd.isnull(frame["Mile"][randomIndex])) and frame["Mile"][randomIndex] is not "DNR" and frame["Mile"][randomIndex] is not "Rx":	
 			if frame["Gender"][randomIndex] == "M":
-				print len(males)
+				print(len(males))
 				if len(males)<10:
 					males.append(frame["Mile"][randomIndex])
 			if frame["Gender"][randomIndex] == "F":
@@ -32,5 +32,5 @@ file.write(str(sampleFrameMale))
 file2=open("sampleframe2015_female.txt","w")
 file2.write(str(sampleFrameFemale))
 
-print sampleFrameMale
-print sampleFrameFemale
+print(sampleFrameMale)
+print(sampleFrameFemale)

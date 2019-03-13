@@ -18,13 +18,13 @@ for i in range(0,int(sys.argv[1])):
         
     # Connect the socket to the port where the server is listening
     server_address = ('localhost', 5005)
-    print >>sys.stderr, 'connecting to %s port %s' % server_address
+    print('connecting to %s port %s' % server_address, file=sys.stderr)
     sock.connect(server_address)
     try:
         
         # Send data
         message = sys.argv[2]
-        print >>sys.stderr, 'sending "%s"' % message
+        print('sending "%s"' % message, file=sys.stderr)
         sock.sendall(message)
 
         # Look for the response
@@ -36,7 +36,7 @@ for i in range(0,int(sys.argv[1])):
             amount_received += len(data)
             packets+=1
             pings += 1
-            print >>sys.stderr, 'received "%s"' % data
+            print('received "%s"' % data, file=sys.stderr)
             passed+=1
         #else:
          #   failed+=1
@@ -44,12 +44,12 @@ for i in range(0,int(sys.argv[1])):
     finally:
         #print >>sys.stderr, 'received %s packets' % packets
         #print >>sys.stderr, 'received %s bytes' % len(data)
-        print >>sys.stderr, 'closing socket'
+        print('closing socket', file=sys.stderr)
         sock.close()
 end = time.time()
 elapsed = end - start
 fail=float(float(failed)/float(pings))
 succ=float(float(passed)/float(pings))
-print "%d segments recieved out of %s attempted (%s success rate, %s fail rate)" % (passed,pings,succ,fail)
-print "%d segments took %s seconds" % (pings,elapsed)
+print("%d segments recieved out of %s attempted (%s success rate, %s fail rate)" % (passed,pings,succ,fail))
+print("%d segments took %s seconds" % (pings,elapsed))
 

@@ -47,7 +47,7 @@ def process(suitable_paper):
 def postprocess_citations(topic):
     """Process aggregated data and save multiple formats of it"""
     # Flatten list of citations, keeping duplicates
-    all_citations = [item for sublist in citationsDict.values() for item in sublist]
+    all_citations = [item for sublist in list(citationsDict.values()) for item in sublist]
     # Count how many times papers are cited
     counter = collections.Counter(all_citations).most_common()
     output = open("counts_{}.json".format(topic))
@@ -58,10 +58,10 @@ def postprocess_citations(topic):
     citations.write(json.dumps(citationsDict, indent=4))
     citations.close()
     # calculate percentiles
-    total_size = len(counter.values())
+    total_size = len(list(counter.values()))
     percentile_size = total_size / 100
     for i in range(0, total_size, percentile_size):
-        percentiles[i] = counter.values()[i]
+        percentiles[i] = list(counter.values())[i]
 
 
 pool = multiprocessing.Pool(64)

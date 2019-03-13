@@ -30,7 +30,7 @@ def force_function(x_0, y_0, x_f,  y_f):
     return G*SIGMA*z*trapezoidal_2d(lambda x, y: 1/((x**2+y**2+z**2))**1.5, x_0, y_0, x_f,  y_f, .01)
 
 
-print("FORCE WHERE Z=1:", force_function(-5, -5, 5, 5))
+print(("FORCE WHERE Z=1:", force_function(-5, -5, 5, 5)))
 
 print("Problem 5.14: Gravitational Pull of Galaxy, (b)")
 

@@ -198,7 +198,7 @@ class EC2Provider(ExecutionProvider):
                 route_table.associate_with_subnet(SubnetId=subnet.id)
                 self.sn_ids.append(subnet.id)
             else:
-                print("{} unavailable".format(zone['ZoneName']))
+                print(("{} unavailable".format(zone['ZoneName'])))
         # Security groups
         sg = self.security_group(vpc)
         self.vpc_id = vpc.id
@@ -416,7 +416,7 @@ ipengine --file=ipengine.json""".format(config)
             self.instances)
         status_string += "\tInstance States:\n\t\t"
         self.get_instance_state()
-        for state in self.instance_states.keys():
+        for state in list(self.instance_states.keys()):
             status_string += "Instance ID: {}  State: {}\n\t\t".format(
                 state, self.instance_states[state])
         status_string += "\n"
@@ -462,6 +462,6 @@ if __name__ == '__main__':
     conf = "providerconf.json"
     provider = EC2Provider(conf)
     provider.submit("sleep 5")
-    print(provider.show_summary())
+    print((provider.show_summary()))
     # provider.scale_in(1)
-    print(provider.show_summary())
+    print((provider.show_summary()))

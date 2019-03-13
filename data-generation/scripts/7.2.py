@@ -14,7 +14,7 @@ def dft(y):
 
 def part_a():
     data = np.loadtxt('sunspots.txt')
-    print("approx: {}".format(133.2))
+    print(("approx: {}".format(133.2)))
     pylab.plot(data[:, 0], data[:, 1])
     pylab.show()
 
@@ -31,7 +31,7 @@ def part_c():
     coef = list(np.fft.rfft(data[:, 1]))
     disp = [np.abs(x)**2 for x in coef]
     peak = disp.index(max(disp[2:]))
-    print(coef[24])
+    print((coef[24]))
 
 
 def main():

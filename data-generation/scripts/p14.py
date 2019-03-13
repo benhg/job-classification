@@ -12,7 +12,7 @@ def collatz(x):
 collatz1=[]
 for i in range(1000000):
 	j=collatz(i)
-	print i
+	print(i)
 	if len(j)>len(collatz1):
 		collatz1=j
 print(collatz1)

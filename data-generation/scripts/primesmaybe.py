@@ -1,4 +1,5 @@
 import time as t
+from functools import reduce
 
 def factors(n):    
     return reduce(list.__add__, 
@@ -18,5 +19,5 @@ def primesBelow(n):
 
 #print(primesBelow(400000))
 ti=t.time()
-print(factors(235958091582))
-print (t.time()-ti)
+print((factors(235958091582)))
+print((t.time()-ti))

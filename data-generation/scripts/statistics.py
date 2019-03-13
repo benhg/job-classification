@@ -17,13 +17,13 @@ dirtysamplelist.append(a2015_female_sample)
 cleansamplelist=[]
 for sample in dirtysamplelist:
 	list=[]
-	print list
+	print(list)
 	for subsample in sample:
 		for run in subsample:
-			print run
+			print(run)
 			if ":" in run:
 				list.append((int(run.split(":")[0])*60)+(int(run.split(":")[1])))
-				print int(run.split(":")[1])
+				print(int(run.split(":")[1]))
 			elif "." in run:
 				list.append((int(run.split(".")[0])*60)+(int(run.split(".")[1])))
 	cleansamplelist.append(list)
@@ -57,7 +57,7 @@ for dataset in plots_to_be_made:
 	mean,sigma=np.mean(dataset), np.std(dataset)
 	t_bounds=stats.t.interval(0.95, len(dataset)-1)
 	ci=[mean + critval * (sigma/sqrt(len(dataset))) for critval in t_bounds]
-	print ci
+	print(ci)
 	file.write("%s:%s-%s. Sampmean:%s StdDev:%s"%(plot_titles[i],ci[0],ci[1], mean, sigma)+"\n")
 	i+=1
 file.close()
@@ -89,6 +89,6 @@ for dataset in plots_to_be_made_male:
 	i+=1
 i=0
 for dataset in plots_to_be_made_female:
-	print i
+	print(i)
 	file.write("%s>National Average (female):%s"%(plot_titles_female[i], stats.ttest_1samp(np.array(dataset),female_national_average))+"\n")
 	i+=1

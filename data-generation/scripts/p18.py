@@ -23,4 +23,4 @@ result = recSumAtRow(rows, len(rows)-2) # start at second to last row
 elapsed = time.time() - start
  
  
-print "%s found in %s seconds" % (result ,elapsed)
+print("%s found in %s seconds" % (result ,elapsed))

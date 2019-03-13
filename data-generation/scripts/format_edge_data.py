@@ -45,8 +45,8 @@ def insert_mapping_to_db(picklefile):
     items = load_mapping_from_pickle(picklefile)
     c = conn.cursor()
     for item in items:
-        int_id = item.keys()[0]
-        wos_id = item.values()[0]
+        int_id = list(item.keys())[0]
+        wos_id = list(item.values())[0]
         sql = "INSERT INTO mapping VALUES ({},'{}')".format(int_id, wos_id)
         c.execute(sql)
         conn.commit()

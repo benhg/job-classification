@@ -84,12 +84,12 @@ class genderPredictor():
 
 gp = genderPredictor()
 accuracy=gp.trainAndTest()
-print 'Accuracy: %f'%accuracy
-print 'Most Informative Features'
+print('Accuracy: %f'%accuracy)
+print('Most Informative Features')
 feats=gp.getMostInformativeFeatures(10)
 for feat in feats:
-    print '\t%s = %s'%feat
-name = raw_input('Enter name to classify: ')
+    print('\t%s = %s'%feat)
+name = input('Enter name to classify: ')
 gender=gp.classify(name)
 
 # file=open('classified', "a")
@@ -98,4 +98,4 @@ gender=gp.classify(name)
 #     firstName=name.split(' ')[0].strip()
 #     gender=gp.classify(firstName)
 #     print '\n%s is classified as %s'%(name, gp.classify(firstName))
-print('%s | %s\n'%(name,gender))
+print(('%s | %s\n'%(name,gender)))

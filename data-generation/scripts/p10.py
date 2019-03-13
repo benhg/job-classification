@@ -6,11 +6,11 @@ def primes_sieve(limit):
     for i in range(2, limitn):
         if not_prime[i]:
             continue
-        for f in xrange(i*2, limitn, i):
+        for f in range(i*2, limitn, i):
             not_prime[f] = True
 
         primes.append(i)
 
     return primes
 
-print sum(primes_sieve(2000000))
+print(sum(primes_sieve(2000000)))

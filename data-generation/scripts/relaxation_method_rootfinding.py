@@ -20,4 +20,4 @@ while abs(f(X) - X) > err:
         exit(1)
 
 
-print(X, y)
+print((X, y))

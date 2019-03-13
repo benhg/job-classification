@@ -111,5 +111,5 @@ plot(alphas, means)
 
 mercury_alpha = .0001
 slope, intercept, r_value, p_value, std_err = stats.linregress(alphas, means)
-print("Mercury's Perihelion processes at a rate of ",
-      ((slope * mercury_alpha) + intercept)/2)
+print(("Mercury's Perihelion processes at a rate of ",
+      ((slope * mercury_alpha) + intercept)/2))

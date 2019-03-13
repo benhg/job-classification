@@ -452,8 +452,8 @@ d={
 }
 import matplotlib.pyplot as plt
 import numpy as np
-plt.bar(range(len(d)), d.values(), align="center")
-plt.xticks(range(len(d)), list(d.keys()))
+plt.bar(list(range(len(d))), list(d.values()), align="center")
+plt.xticks(list(range(len(d))), list(d.keys()))
 plt.yticks(np.arange(0,max(d.values()),.05))
 plt.xlabel("Number of Citations %ile")
 plt.ylabel("Email Coverage")

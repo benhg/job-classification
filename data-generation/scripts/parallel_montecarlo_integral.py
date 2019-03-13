@@ -25,4 +25,4 @@ def mc_int(f, a, b, n, height):
 
 #plot(linspace(0, 2, 1000), [f(x) for x in linspace(0, 2, 1000)])
 # show()
-print(mc_int(f, 0, 2, 10**7, 1))
+print((mc_int(f, 0, 2, 10**7, 1)))

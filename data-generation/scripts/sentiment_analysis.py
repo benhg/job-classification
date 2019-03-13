@@ -27,7 +27,7 @@ def analyze_context(context):
                            'outputFormat': 'json',
                            'timeout': 10000,
                        })
-    print(type(res))
+    print((type(res)))
     sentences =''
     try:
         sentences=res['sentences']

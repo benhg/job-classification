@@ -29,15 +29,15 @@ def mergeSort(x):
     return sorted
 
 def testSort(arr):
-    return all(arr[i] <= arr[i+1] for i in xrange(len(arr)-1))
+    return all(arr[i] <= arr[i+1] for i in range(len(arr)-1))
 
 
   
 for index, val in enumerate(range(0,1000000,100)):
-    testArray=[random.randint(-10000000,10000000) for r in xrange(val)]
-    print "Test Number %s. Length:%s"%(index, val)
+    testArray=[random.randint(-10000000,10000000) for r in range(val)]
+    print("Test Number %s. Length:%s"%(index, val))
     #print testArray
     #print testSort(testArray)
     result=mergeSort(testArray)
     #print result
-    print "Sort Worked?: %s"%(testSort(result))
+    print("Sort Worked?: %s"%(testSort(result)))

@@ -25,10 +25,10 @@ def execute_wait(cmd, walltime):
         retcode = proc.returncode
 
     except Exception as e:
-        print("Caught exception : {0}".format(e))
+        print(("Caught exception : {0}".format(e)))
         logger.warn("Execution of command [%s] failed due to \n %s ", (cmd, e))
 
-    print("RunCommand Completed {0}".format(cmd))
+    print(("RunCommand Completed {0}".format(cmd)))
     return (retcode, stdout.decode("utf-8"), stderr.decode("utf-8"))
 
 
@@ -69,7 +69,7 @@ class Slurm(ExecutionProvider):
                         ["options"]["submit_script_dir"])
 
         self.resources = []
-        print("Template : ", template_string)
+        print(("Template : ", template_string))
         logger.debug("Slurm Config : %s" % self.config)
 
     ##########################################################################
@@ -78,7 +78,7 @@ class Slurm(ExecutionProvider):
     def _get_job_status(self, job_id):
         retcode, stdout, stderr = execute_wait(
             "squeue {0}".format(script_name), 1)
-        print("Stdout : ", stdout)
+        print(("Stdout : ", stdout))
 
     def status(self, job_ids):
         ''' Docs pending
@@ -90,13 +90,13 @@ class Slurm(ExecutionProvider):
         for line in stdout.split('\n'):
             parts = line.split()
             if parts and parts[0] != 'JOBID':
-                print("Parts : ", parts)
+                print(("Parts : ", parts))
                 job_id = parts[0]
                 status = translate_table.get(parts[4], 'UNKNOWN')
                 for job in self.resources:
                     if job['job_id'] == job_id:
                         job['status'] = status
-        print(self.resources)
+        print((self.resources))
 
     ##########################################################################
     # Submit
@@ -135,9 +135,9 @@ class Slurm(ExecutionProvider):
             template_string, script_name, job_name, self.config)
         retcode, stdout, stderr = execute_wait(
             "sbatch {0}".format(script_name), 1)
-        print ("retcode : ", retcode)
-        print ("stdout  : ", stdout)
-        print ("stderr  : ", stderr)
+        print(("retcode : ", retcode))
+        print(("stdout  : ", stdout))
+        print(("stderr  : ", stderr))
         job_id = None
 
         if retcode == 0:
@@ -168,10 +168,10 @@ class Slurm(ExecutionProvider):
 
         else:
             for resource in self.resources[0:size]:
-                print("Cancelling : ", resource['job_id'])
+                print(("Cancelling : ", resource['job_id']))
                 retcode, stdout, stderr = execute_wait(
                     "scancel {0}".format(resource['job_id']), 1)
-                print(retcode, stdout, stderr)
+                print((retcode, stdout, stderr))
 
         return count
 
@@ -201,7 +201,7 @@ if __name__ == "__main__":
     pool1 = Midway(conf)
     pool1.scale_out(1)
     pool1.scale_out(1)
-    print("Pool resources : ", pool1.resources)
+    print(("Pool resources : ", pool1.resources))
     pool1.status()
     pool1.scale_in(1)
     pool1.scale_in(1)

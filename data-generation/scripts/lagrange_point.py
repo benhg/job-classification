@@ -24,5 +24,5 @@ def naive_Newton(f, dfdx, x, eps):
     return x
 
 
-print("The L1 Point for Earth Moon is located near r=%s" %
-      naive_Newton(lagrange_point_polynomial, dx, 1000, 0.001))
+print(("The L1 Point for Earth Moon is located near r=%s" %
+      naive_Newton(lagrange_point_polynomial, dx, 1000, 0.001)))

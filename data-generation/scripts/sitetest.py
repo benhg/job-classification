@@ -64,5 +64,5 @@ site = {
     }
 }
 
-print json.dumps(site, indent=4)
+print(json.dumps(site, indent=4))
 sites = [site['midway_single'], site['midway_multiple']]

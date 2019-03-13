@@ -58,7 +58,7 @@ while abs(E1-E2) > target:
     E1, E2 = E2, E2-psi2*(E2-E1)/(psi2-psi1)
 
 int1 = simps([abs(i)**2 for i in y1], dx=h)
-print("E =", E2/e, "eV")
+print(("E =", E2/e, "eV"))
 
 
 E1 = 300*e
@@ -72,7 +72,7 @@ while abs(E1-E2) > target:
     E1, E2 = E2, E2-psi2*(E2-E1)/(psi2-psi1)
 
 int2 = simps([abs(i)**2 for i in y2], dx=h)
-print("E =", E2/e, "eV")
+print(("E =", E2/e, "eV"))
 
 E1 = 900*e
 E2 = 1200*e
@@ -85,7 +85,7 @@ while abs(E1-E2) > target:
     E1, E2 = E2, E2-psi2*(E2-E1)/(psi2-psi1)
 
 int3 = simps([abs(i)**2 for i in y3], dx=h)
-print("E =", E2/e, "eV")
+print(("E =", E2/e, "eV"))
 
 
 plot(arange(-5*a, 5*a, h)[:-100], [abs(i)**2/int1 for i in y1][:-100])

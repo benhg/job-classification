@@ -21,8 +21,8 @@ def mode_6():
         if party is not None:
             alignments.append(float(align))
             parties.append(float(party))
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("6. US people with dem/repub/ind AND ben-recoded parties {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')
@@ -47,8 +47,8 @@ def mode_5():
             alignments.append(float(align))
             parties.append(float(party))
 
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("5. ALL people with dem/repub/ind AND ben-recoded GLOBAL parties {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')
@@ -74,8 +74,8 @@ def mode_4():
             alignments.append(float(align))
             parties.append(float(party))
 
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("4. ALL people with dem/repub AND ben-recoded GLOBAL parties {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')
@@ -100,8 +100,8 @@ def mode_3():
         if party is not None and '4' not in party:
             alignments.append(float(align))
             parties.append(float(party))
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("3. US people with dem/repub AND ben-recoded parties {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')
@@ -126,8 +126,8 @@ def mode_2():
         if party is not None:
             alignments.append(float(align))
             parties.append(float(party))
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("2. US people with dem/repub/ind responses {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')
@@ -153,8 +153,8 @@ def mode_1():
             alignments.append(float(align))
             parties.append(float(party))
 
-    print(len(alignments), len(parties))
-    print(alignments, parties)
+    print((len(alignments), len(parties)))
+    print((alignments, parties))
     corr = np.corrcoef(parties, alignments)[0, 1]
     plt.title("1. US people with dem/repub responses, no inds {}".format(str(corr)))
     plt.ylabel('Self-Reported Political Alignment (0 is liberal, 7 is conservative)')

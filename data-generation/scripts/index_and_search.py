@@ -96,4 +96,4 @@ if __name__ == '__main__':
     # Searching with S3 object
     key = 'beng/ben0.jpg'
     response = search_image(key, method='S3')
-    print(get_name(response))
+    print((get_name(response)))

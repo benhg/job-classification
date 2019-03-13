@@ -34,4 +34,4 @@ def process(year):
     c.writerows(res)
 
 pool=multiprocessing.Pool(16)
-pool.map(process,range(2015,1999,-1))
+pool.map(process,list(range(2015,1999,-1)))

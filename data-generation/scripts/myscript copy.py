@@ -20,7 +20,7 @@ print(topic)
 
 # In[4]:
 
-print(topic[0])
+print((topic[0]))
 
 
 # In[5]:

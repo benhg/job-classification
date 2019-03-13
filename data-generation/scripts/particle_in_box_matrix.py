@@ -59,7 +59,7 @@ def phi(n, x):
 
 
 def generate_psi(phi, col):
-    return lambda x: sum(col[sam] * phi(sam, x) for sam in range(len(col)))
+    return lambda x: sum(col[sam] * phi(sam, x) for sam in list(range(len(col))))
 
 
 psis = []
@@ -76,7 +76,7 @@ print(energy)
 
 print("Problem 6.9 B. Analytic part done on paper. Proof that HMN matrix is symmetric and real is below")
 print(H)
-print("H is symmetric?: {}".format(check_symmetric(H)))
+print(("H is symmetric?: {}".format(check_symmetric(H))))
 
 print("Problem 6.9 C. Recomputing H to dimension 10x10")
 H = zeros([10, 10], float)
@@ -99,7 +99,7 @@ for m in range(0, 100):
 
 
 energy, Anp = eigh(H)
-print(hbar/energy[1])
+print((hbar/energy[1]))
 energy *= 6.2*10**18
 print("Energies Below:")
 print(energy)
@@ -150,7 +150,7 @@ def generate(t):
     integ = scipy.integrate.simps(ans, linspace(0, L, 100))
     print(integ)
 
-    print("Psi_{}".format(i+1))
+    print(("Psi_{}".format(i+1)))
     plt.savefig(
         "psis_frames/frame{}.png".format(str(i+1).zfill(7)))
     clf()

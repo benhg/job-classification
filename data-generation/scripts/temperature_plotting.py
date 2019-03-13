@@ -32,7 +32,7 @@ things.append(derivative(E3, 996))
 
 plot(T_plot, things, label="C(T)")
 cmax = max(things)
-print("C_MAX = ", cmax, "T = ", T_plot[things.index(cmax)])
+print(("C_MAX = ", cmax, "T = ", T_plot[things.index(cmax)]))
 
 plot(T_plot, E_3, label="E_3(T)")
 title("E_3 and C vs T")

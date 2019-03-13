@@ -15,7 +15,7 @@ x = 1.2e-5
 x = 2+3j
 
 # real and imag
-print(x.real, x.imag, type(x))
+print((x.real, x.imag, type(x)))
 
 z = "Hi Arden"
 print(z)
@@ -28,7 +28,7 @@ print(z)
 #print("when you add those numbers, you get {}".format(x+y))
 
 
-print(ord("A"))
+print((ord("A")))
 
 a,b,c = "a","r","d"
 
@@ -37,4 +37,4 @@ x,y = y,x
 
 from cmath import sin
 
-print(sin(5+6j))
+print((sin(5+6j)))

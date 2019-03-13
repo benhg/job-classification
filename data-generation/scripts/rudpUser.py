@@ -21,7 +21,7 @@ def checkTimeOut(conns):
 	global pktNum
 	conNum = len(conns)
 	curTime   = time()
-	print '\nOnline C:', conNum, 'time:', curTime - strTime , 'sec', 'pktNum:', pktNum
+	print('\nOnline C:', conNum, 'time:', curTime - strTime , 'sec', 'pktNum:', pktNum)
 	pktNum = 0
 	while True:
 		if conNum == 0: break
@@ -91,10 +91,10 @@ class rudpClient:
 		self.conn.destAddr = (destIP, destPort)
 		
 		self.skt.settimeout(RTO)
-		for i in xrange(MAX_RESND):
+		for i in range(MAX_RESND):
 			try: 
 				self.skt.sendto(encode(rudpPacket(SYN, self.conn.pktId)), self.conn.destAddr)
-				print rudpPacket(SYN, self.conn.pktId) 	## For debugging
+				print(rudpPacket(SYN, self.conn.pktId)) 	## For debugging
 				
 				while True:
 					recvData, addr = self.skt.recvfrom(MAX_DATA)
@@ -102,31 +102,31 @@ class rudpClient:
 						recvPkt = decode(recvData)
 						sendPkt = rudpProcessSwitch[recvPkt['pktType']](recvPkt, self.conn)
 						return True
-					except WRONG_PKT, KeyError: continue
+					except WRONG_PKT as KeyError: continue
 			except timeout: continue
 			except Exception as e : 
-				print e.message
-				print '[Handshaking] unexpected error occurs\n' ## For debugging
+				print(e.message)
+				print('[Handshaking] unexpected error occurs\n') ## For debugging
 				return False
 		raise MAX_RESND_FAIL()
 	
 	def sendData(self, data):
 		# Compute total size of data and prepare data packets to be sent
 		total_pkt = int(ceil(len(data)/float(MAX_PKT_SIZE)))
-		data_pkt = range(total_pkt)
-		for i in xrange(0, total_pkt, 1):
+		data_pkt = list(range(total_pkt))
+		for i in range(0, total_pkt, 1):
 			data_pkt[i] = data[i*MAX_PKT_SIZE : (i+1)*MAX_PKT_SIZE]
 			
 		# [HandShaking] - Done
 		# [Data-Delivery]
 		sendPkt = rudpPacket(DAT, self.conn.pktId)
-		for i in xrange(0, len(data_pkt), 1):
+		for i in range(0, len(data_pkt), 1):
 			
 			sendPkt['data'] = data_pkt[i]
-			for j in xrange(MAX_RESND):
+			for j in range(MAX_RESND):
 				try:		
 					self.skt.sendto(encode(sendPkt), self.conn.destAddr)
-					print "send:  'pktType':{}, 'pktId':{}, 'data':{} bytes".format(sendPkt['pktType'], sendPkt['pktId'], len(sendPkt['data'])) ## For debugging
+					print("send:  'pktType':{}, 'pktId':{}, 'data':{} bytes".format(sendPkt['pktType'], sendPkt['pktId'], len(sendPkt['data']))) ## For debugging
 					while True:
 						recvData, addr = self.skt.recvfrom(MAX_DATA)
 						try: 
@@ -134,12 +134,12 @@ class rudpClient:
 							sendPkt = rudpProcessSwitch[recvPkt['pktType']](recvPkt, self.conn)
 							#sleep(1)
 							break
-						except WRONG_PKT, KeyError: continue
+						except WRONG_PKT as KeyError: continue
 				except timeout: 
 					if j == MAX_RESND - 1: raise MAX_RESND_FAIL()
 					else: continue
 				except Exception as e: 
-					print e.message
+					print(e.message)
 					return False
 				break
 		return True
@@ -147,7 +147,7 @@ class rudpClient:
 	def close(self):
 		# [Shutdown]
 		sendPkt = rudpPacket(FIN, self.conn.pktId);
-		for i in xrange(MAX_RESND):
+		for i in range(MAX_RESND):
 			try:
 				self.skt.sendto(encode(sendPkt), self.conn.destAddr)
 				self.conn.wait = FIN_ACK
@@ -156,14 +156,14 @@ class rudpClient:
 					try: 
 						recvPkt = decode(recvData)
 						rudpProcessSwitch[recvPkt['pktType']](recvPkt, self.conn)
-					except WRONG_PKT, KeyError: continue
+					except WRONG_PKT as KeyError: continue
 					except END_CONNECTION:
 						# close the connection
 						del self.conn
 						return True
 			except timeout: continue
 			except Exception as e: 
-				print e.message
+				print(e.message)
 				return False
 		raise MAX_RESND_FAIL()
 		
@@ -179,12 +179,12 @@ class rudpClient:
 		infile = open(filepath, 'r')
 		infile.seek(0)
 
-		for i in xrange(0, numOfBlocks, 1):
+		for i in range(0, numOfBlocks, 1):
 			try:
 				dataBlock = infile.read(MAX_BLOCK_SIZE)
 				if self.sendData(dataBlock): continue
 			except Exception as e:
-				print e.message
+				print(e.message)
 				return False
 		infile.close()
 		return True

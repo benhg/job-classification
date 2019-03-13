@@ -20,9 +20,9 @@ max_decimal = 0
 max_d = 0
 for i in range(1,1000):
     reciprocal = get_recurring_decimal(i)
-    print i, reciprocal
+    print(i, reciprocal)
     if len(reciprocal) > max_decimal:
         max_d = i
         max_decimal = len(reciprocal)
 
-print max_d, max_decimal
+print(max_d, max_decimal)

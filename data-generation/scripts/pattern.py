@@ -38,7 +38,7 @@ def test_arbitrary(x = 2):
     for i in range(x):
         numbers.append(rand())
     for i in range(x):
-        print(numbers[i].result())
+        print((numbers[i].result()))
 
 
 if __name__ == '__main__':

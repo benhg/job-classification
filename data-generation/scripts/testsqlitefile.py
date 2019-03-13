@@ -165,7 +165,7 @@ def get_author_citations(wos_id):
             citations.append(res[0].split(".")[0])
             return citations
     except Exception as e:
-        print("failed on {}".format(wos_id))
+        print(("failed on {}".format(wos_id)))
         return []
 
 
@@ -175,7 +175,7 @@ def lookup(wos_id):
     ids_to_lookup = []
     print(wos_id)
     ids_to_lookup.extend(generate_citation_sample(wos_id))
-    print("Done WIth " + wos_id)
+    print(("Done WIth " + wos_id))
     outfile.write(ids_to_lookup)
 
 

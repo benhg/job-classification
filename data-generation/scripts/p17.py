@@ -22,4 +22,4 @@ for i in range(1,1000):
 total += S[1] + T
 elapsed = time.time() - start
  
-print "%s found in %s seconds" % (total,elapsed)
+print("%s found in %s seconds" % (total,elapsed))

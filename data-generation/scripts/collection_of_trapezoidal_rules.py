@@ -56,4 +56,4 @@ def j(x, y):
 
 
 if __name__ == "__main__":
-    print(trapezoidal_2d(j, -.5, -.5, .5, .5, .001))
+    print((trapezoidal_2d(j, -.5, -.5, .5, .5, .001)))

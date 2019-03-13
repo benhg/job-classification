@@ -48,10 +48,10 @@ while error>tolerance:
     
 timeAfter = time.time()
 total=timeAfter - timeBefore
-print('It took',total,'seconds')
+print(('It took',total,'seconds'))
 
-print("V at (0,0) is {}".format(phi[100][100]))
-print("V at (0,.25) is {}".format(phi[125][100]))
+print(("V at (0,0) is {}".format(phi[100][100])))
+print(("V at (0,.25) is {}".format(phi[125][100])))
 
 
 def dVdx(x,y):
@@ -66,8 +66,8 @@ def E(x,y):
     return (-(dVdx(x,y)), -(dVdy(x,y)))
 
 
-print("E at (0,0) is {}".format(E(100,100)))
-print("E at (0,.25) is {}".format(E(125, 100)))
+print(("E at (0,0) is {}".format(E(100,100))))
+print(("E at (0,.25) is {}".format(E(125, 100))))
 
 imshow(phi)
 show()

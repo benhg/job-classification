@@ -35,4 +35,4 @@ def simpsArden(func, a, b, h):
                     2 * sum([func(a + k * h) for k in range(2, n - 1, 2)]))
 
 
-print(simpson(function, 1, 2, .00001), simpsArden(function, 1, 2, .00001))
+print((simpson(function, 1, 2, .00001), simpsArden(function, 1, 2, .00001)))

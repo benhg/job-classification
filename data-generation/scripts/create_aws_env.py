@@ -58,7 +58,7 @@ class AWSEnvCreator:
                 route_table.associate_with_subnet(SubnetId=subnet.id)
                 self.sn_ids.append(subnet.id)
             else:
-                print("{} unavailable".format(zone['ZoneName']))
+                print(("{} unavailable".format(zone['ZoneName'])))
         # Security groups
         sg = self.security_group(vpc)
         self.vpc_id = vpc.id

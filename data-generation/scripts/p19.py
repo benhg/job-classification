@@ -26,4 +26,4 @@ total = months_start_range(0,1901,2000)
  
 elapsed = time.time() - start
  
-print("%s found in %s seconds") % (total,elapsed)
+print(("%s found in %s seconds") % (total,elapsed))

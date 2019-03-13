@@ -134,7 +134,7 @@ class EC2(ExecutionProvider):
                 route_table.associate_with_subnet(SubnetId=subnet.id)
                 self.sn_ids.append(subnet.id)
             else:
-                print("{} unavailable".format(zone['ZoneName']))
+                print(("{} unavailable".format(zone['ZoneName'])))
         # Security groups
         sg = self.security_group(vpc)
         self.vpc_id = vpc.id
@@ -227,12 +227,12 @@ class EC2(ExecutionProvider):
         pass
 
     def show_summary(self):
-        print(
+        print((
             "EC2 Summary:\nVPC IDs: {}\nSubnet IDs: {}\nSecurity Group ID: {}\nInstance IDs: {}\n".format(
                 self.vpc_id,
                 self.sn_ids,
                 self. sg_id,
-                self.instances))
+                self.instances)))
 
 
 if __name__ == '__main__':

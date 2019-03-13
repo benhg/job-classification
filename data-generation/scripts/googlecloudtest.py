@@ -66,4 +66,4 @@ if __name__ == "__main__":
     avg_pi = avg_n([task.result() for task in sims])
 
     # Print the results
-    print("Average: {0:.63f}".format(avg_pi.result()))
+    print(("Average: {0:.63f}".format(avg_pi.result())))

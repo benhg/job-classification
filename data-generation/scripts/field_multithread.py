@@ -25,8 +25,8 @@ topics=["Oncology","Clinical Neurology","Communication","Computer Science, Artif
 coverage={}
 
 coverage2={}
-for key, value in coverage.items():
-    if key not in coverage2.keys():
+for key, value in list(coverage.items()):
+    if key not in list(coverage2.keys()):
         coverage2[key] = value
 #print coverage2
 
@@ -53,7 +53,7 @@ def calc_stuff(topic):
     #     break
     except Exception as e:
         print(e)
-        print("Errored on {}".format(topic))
+        print(("Errored on {}".format(topic)))
 
 
 pool = multiprocessing.Pool(4)
@@ -69,7 +69,7 @@ out1 = pool.map(calc_stuff, topics)
 # In[8]:
 
 print(coverage)
-print (len(coverage))
+print((len(coverage)))
 
 
 # In[9]:

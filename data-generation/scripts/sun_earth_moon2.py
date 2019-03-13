@@ -55,4 +55,4 @@ while abs(deltaV1) > error or abs(deltaV2) > error:
     M = [[df1dV1(V1, V2), df1dV2(V1, V2)], [df2dV1(V1, V2), df2dV2(V1, V2)]]
     deltaV1, deltaV2 = solve(M, F)
     deltaV1, deltaV2 = deltaV1[0], deltaV2[0]
-print(V1, V2)
+print((V1, V2))

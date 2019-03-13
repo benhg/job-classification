@@ -10,6 +10,6 @@ def Divisorsbaritself(x):
     return sum(divList)
 
 def amicable(n):
-    solution = [i for i in xrange(n) if Divisorsbaritself(i)!=i and Divisorsbaritself(Divisorsbaritself(i)) == i]
+    solution = [i for i in range(n) if Divisorsbaritself(i)!=i and Divisorsbaritself(Divisorsbaritself(i)) == i]
     return sum(solution)
-print amicable(10000)
+print(amicable(10000))

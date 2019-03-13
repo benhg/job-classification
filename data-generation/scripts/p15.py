@@ -25,4 +25,4 @@ start = time.time()
 result = recPath(gridSize)
 elapsed = time.time() - start
  
-print "result %s found in %s seconds" % (result, elapsed)
+print("result %s found in %s seconds" % (result, elapsed))

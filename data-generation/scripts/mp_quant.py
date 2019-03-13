@@ -59,7 +59,7 @@ def phi(n, x):
 
 
 def generate_psi(phi, col):
-    return lambda x: sum(col[sam] * phi(sam, x) for sam in range(len(col)))
+    return lambda x: sum(col[sam] * phi(sam, x) for sam in list(range(len(col))))
 
 
 psis = []
@@ -71,7 +71,7 @@ def check_symmetric(a, tol=1e-8):
     return allclose(a, a.T, atol=tol)
 
 
-print("H is symmetric?: {}".format(check_symmetric(H)))
+print(("H is symmetric?: {}".format(check_symmetric(H))))
 
 print("Problem 6.9 D. Recomputing H to dimension 100x100. This solution is pretty close to the one we had before. This suggests the old one may be good enough.")
 H = zeros([100, 100], float)
@@ -81,7 +81,7 @@ for m in range(0, 100):
 
 
 energy, Anp = eigh(H)
-print(hbar/energy[1])
+print((hbar/energy[1]))
 energy *= 6.2*10**18
 
 
@@ -122,7 +122,7 @@ def generate(t):
     integ = scipy.integrate.simps(ans, linspace(0, L, 100))
     print(integ)
 
-    print("Psi_{}".format(i+1))
+    print(("Psi_{}".format(i+1)))
     # plt.savefig(
     #    "psis_frames/frame{}.png".format(str(i+1).zfill(7)))
     # clf()

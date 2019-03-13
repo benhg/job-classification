@@ -5,4 +5,4 @@ def score(word):
 with open('p022_names.txt') as f:
   names = f.read().split(',')
   names.sort()
-print sum(i*score(x) for i, x in enumerate(names, 1))
+print(sum(i*score(x) for i, x in enumerate(names, 1)))

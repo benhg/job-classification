@@ -58,5 +58,5 @@ pool = Pool(32)
 out = pool.map(f,  linspace(0.9, 1.6, 100))
 
 flat_list = [item for sublist in out for item in sublist]
-plot(*zip(*flat_list), ".")
+plot(*list(zip(*flat_list)), ".")
 show()

@@ -1,7 +1,7 @@
 # ============ PROBLEM 3 ============
 print("ENTERING PROBLEM 3: Semi-Empirical Mass Formula")
 print("P.3A")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 from numpy import sqrt
 
 
@@ -23,14 +23,14 @@ def binding_energy(A, Z):
 
 A = 58
 Z = 28
-print("binding energy: " + str(binding_energy(A, Z)))
+print(("binding energy: " + str(binding_energy(A, Z))))
 print("PROBLEM 3.B")
-_ = input("Press any key when ready to continue")
-print("binding energy per nucleon", str(binding_energy(A, Z)/A))
+_ = eval(input("Press any key when ready to continue"))
+print(("binding energy per nucleon", str(binding_energy(A, Z)/A)))
 
 
 print("PROBLEM 3.C")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 
 
 def binding_energy_most_stable(Z):
@@ -52,14 +52,14 @@ def binding_energy_most_stable(Z):
         if B/A > mostStable:
             mostStable = B/A
             stableA, stableB = A, B
-    print("mass number", stableA,
-          "binding energy per nucleon", stableB/stableA, "MeV")
+    print(("mass number", stableA,
+          "binding energy per nucleon", stableB/stableA, "MeV"))
 
 
 binding_energy_most_stable(28)
 
 print("PROBLEM 3.D")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 
 for Z in range(1, 101, 1):
     binding_energy_most_stable(Z)

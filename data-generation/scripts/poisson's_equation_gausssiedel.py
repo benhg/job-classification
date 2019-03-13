@@ -47,6 +47,6 @@ while error > tolerance:
 
 timeAfter = time.time()
 total = timeAfter - timeBefore
-print('It took', total, 'seconds')
+print(('It took', total, 'seconds'))
 imshow(phi)
 show()

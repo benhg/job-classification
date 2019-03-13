@@ -72,8 +72,8 @@ plt.figure(figsize=(10, 10))
 plot(arange(0, 500, .1)[250:1000], [(slope * x) +
                                     intercept for x in arange(0, 500, .1)[250:1000]])
 print(r_value)
-xticks(range(0, 500, 25))
+xticks(list(range(0, 500, 25)))
 plot(arange(0, 500, .1), avgs)
 show()
 
-print("Value of L is : ", slope)
+print(("Value of L is : ", slope))

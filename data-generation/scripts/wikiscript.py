@@ -20,5 +20,5 @@ def test_user_time(user):
 
 if __name__ == '__main__':
     user=sys.argv[1]
-    print(query_user(user))
-    print(test_user_time(user))
+    print((query_user(user)))
+    print((test_user_time(user)))

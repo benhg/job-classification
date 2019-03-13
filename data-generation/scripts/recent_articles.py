@@ -32,8 +32,8 @@ def get_recent_articles(path, printInfo=False):
             the publication data is in the 21st Century. Then I call 'data' which references
             the content of the article.
             """
-            if 'publication-date' in data.keys(
-            ):   # This makes sure that each row has a publication date.
+            if 'publication-date' in list(data.keys(
+            )):   # This makes sure that each row has a publication date.
                 if '201' in data['publication-date']:
                     rcount += 1
                     recent += [data]
@@ -44,16 +44,16 @@ def get_recent_articles(path, printInfo=False):
         # This allows user to show info about json file if they want.
         if printInfo:
             research = recent[3]
-            print(research['type'])
-            print("There are " + str(tcount) + " articles total.")
-            print(
+            print((research['type']))
+            print(("There are " + str(tcount) + " articles total."))
+            print((
                 "There are " +
                 str(count) +
-                " articles published before 2010.")
-            print(
+                " articles published before 2010."))
+            print((
                 "There are " +
                 str(rcount) +
-                " articles published after or during 2010.")
+                " articles published after or during 2010."))
     """
     This is just a check to make sure the program worked. rcount = # of articles from 2010 - present
     and len(recent) should be the same thing. Thus if they aren't equal something didn't work.
@@ -62,10 +62,10 @@ def get_recent_articles(path, printInfo=False):
         return recent
     else:
         print("Something is probably wrong with the json file.")
-        print(
+        print((
             "There are " +
             str(rcount) +
-            " articles from 2010-present but the list that stores these possible articles has a length different that the counter...")
+            " articles from 2010-present but the list that stores these possible articles has a length different that the counter..."))
 
 
 def parse_research_articles(list_of_dict, addInfo=False):
@@ -77,15 +77,15 @@ def parse_research_articles(list_of_dict, addInfo=False):
     research_articles = []
     for x in range(len(data)):
         articleDict = list_of_dict[x]
-        if 'doi' in articleDict.keys():
-            if 'type' in articleDict.keys():
+        if 'doi' in list(articleDict.keys()):
+            if 'type' in list(articleDict.keys()):
                 if 'research-article' in articleDict['type']:
                     research_articles += [articleDict]
     # This is just a conditional to give the user an option to display more
     # info if needed.
     if addInfo:
-        print('There are ' + str(len(research_articles))) + \
-            ' research articles.'
+        print(('There are ' + str(len(research_articles))) + \
+            ' research articles.')
         t = research_articles[0]
         print(['title'])
     return research_articles
@@ -122,7 +122,7 @@ def min_jsonDict(list_of_dict, number_of_articles=0):
         # and then this is a nested list... what the fuck
         contentList = content['ocr']
         # And then I need to join it to....
-        totalArticle = u''.join(contentList)
+        totalArticle = ''.join(contentList)
         totalDict['content'] = totalArticle
         totalDict['title'] = title
         totalDict['doi'] = doi
@@ -156,10 +156,10 @@ def split_references(list_of_dict, addInfo=False):
         else:
             wrong += 1
     if addInfo:  # this is just to show additional info if wanted.
-        print(
+        print((
             str(count) +
-            ' articles were split succesfully at the reference section')
-        print("And " + str(wrong) + ' articles were not split sucessfully :(')
+            ' articles were split succesfully at the reference section'))
+        print(("And " + str(wrong) + ' articles were not split sucessfully :('))
     return articleList
 
 
@@ -240,7 +240,7 @@ def get_full_citations_regex(articleStr):
     """Get all full citations given text of a references section of a paper"""
     ex = re.compile(
         r"""(?<year>([(][^)]*(19|20) ?[0-9]{2}[^)]*[)]))|[19|20]{2}\d{2};\d{2}:.*\.|((———\. )?((19|20)\d{2}[a-z]? ?\.? ))""")
-    matches = list(filter(lambda x: x != None, re.split(ex, articleStr)))
+    matches = list([x for x in re.split(ex, articleStr) if x != None])
     tempMatches = []
     for i in range(0, len(matches) - 1, 2):
         match = xstr(matches[i]) + " " + xstr(matches[(i + 1)])
@@ -309,7 +309,7 @@ def map_citations(intexts, fulls, content):
         citation['location'] = clean_location(citLoc)
         # Split year from name/institution
         split_cite = re.split(r'(\s+)', intext)
-        year = ''.join(filter(lambda x: x.isdigit(), split_cite[-1:][0]))
+        year = ''.join([x for x in split_cite[-1:][0] if x.isdigit()])
         other_stuff = ''.join(split_cite[:-1])
         for full in fulls:
             otherMatch = other_match(other_stuff, full)

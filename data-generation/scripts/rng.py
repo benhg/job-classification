@@ -16,5 +16,5 @@ for i in range(n):
     X = (((a * X) + c) % m) / m
     all_xs.append(X)
 
-plot(range(n), all_xs, ".k")
+plot(list(range(n)), all_xs, ".k")
 show()

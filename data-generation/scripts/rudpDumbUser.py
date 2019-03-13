@@ -49,7 +49,7 @@ class rudpDumbSender:
 		self.skt.close()
 
 	def srs(self, sendPkt): #sendPkt --> recvPkt --> sendPkt
-		for i in xrange(MAX_RESND):
+		for i in range(MAX_RESND):
 			try:
 				self.skt.sendto(encode(sendPkt), self.conn.destAddr)
 				while True:
@@ -57,7 +57,7 @@ class rudpDumbSender:
 					try:
 						recvPkt = decode(recvData)
 						return rudpProcessSwitch[recvPkt['pktType']](recvPkt, self.conn)
-					except WRONG_PKT, KeyError: continue
+					except WRONG_PKT as KeyError: continue
 			except timeout: continue
 		raise MAX_RESND_FAIL()
 
@@ -67,7 +67,7 @@ class rudpDumbSender:
 
 		# [Data-Delivery]
 		sendPkt = rudpPacket(DAT, self.conn.pktId)
-		for i in xrange(pktNum):
+		for i in range(pktNum):
 			sendPkt['data'] = data[i * MAX_PKT_SIZE : (i + 1) * MAX_PKT_SIZE]
 			try:
 				sendPkt = self.srs( sendPkt )

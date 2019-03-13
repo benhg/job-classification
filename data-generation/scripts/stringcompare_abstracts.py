@@ -1,6 +1,6 @@
 import MySQLdb as mysql
 import hashlib
-import cPickle as pickle
+import pickle as pickle
 import collections
 
 abstracts = []
@@ -58,7 +58,7 @@ def compare_abstracts(abstracts):
     """Compare all hashes and save duplicates"""
     multiples=[]
     for abstract in abstracts:
-        if abstract.values()[0] not in multiples:
+        if list(abstract.values())[0] not in multiples:
             multiples.append(abstract)
     counter=collections.Counter(multiples)
     file=open("abstracts.txt")

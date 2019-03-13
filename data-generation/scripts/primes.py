@@ -1,8 +1,8 @@
 print("ENTERING PROBLEM 4")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 find = False
 primes = [2]
-print(2)
+print((2))
 for i in range(3, 10001):
     for prime in primes:
         if (i % prime == 0):

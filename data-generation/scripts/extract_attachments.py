@@ -3,7 +3,7 @@ import sys
 
 if __name__=='__main__':
     if len(sys.argv)<2:
-        print "Please enter a file to extract attachments from"
+        print("Please enter a file to extract attachments from")
         sys.exit(1)
 
     msg = email.message_from_file(open(sys.argv[1]))

@@ -54,7 +54,7 @@ for topic in topics:
 # In[8]:
 
 print(coverage)
-print (len(coverage))
+print((len(coverage)))
     
 
 # In[9]:

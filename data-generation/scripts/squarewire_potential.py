@@ -60,11 +60,11 @@ def function_to_integrate_00(x,y):
         pass
 
 
-print("The total field at point(x, y) = (0, 0) is {}".format(
+print(("The total field at point(x, y) = (0, 0) is {}".format(
     adaptive_trapezoidal_2d(function_to_integrate_00, -1/2, -1/2, -1/2, 1/2, 10**-3)[0]
     + adaptive_trapezoidal_2d(function_to_integrate_00, -1/2, -1/2, 1/2, -1/2, 10**-3)[0]
     + adaptive_trapezoidal_2d(function_to_integrate_00, 1/2, -1/2, 1/2, 1/2, 10**-3)[0]
-    + adaptive_trapezoidal_2d(function_to_integrate_00, -1/2, 1/2, 1/2, 1/2, 10**-3)[0]))
+    + adaptive_trapezoidal_2d(function_to_integrate_00, -1/2, 1/2, 1/2, 1/2, 10**-3)[0])))
 
 def function_to_integrate_140(x,y):
     a, b = 1/4,0
@@ -77,11 +77,11 @@ def function_to_integrate_140(x,y):
         pass
 
 
-print("The total field at point(x, y) = (1/4, 0) is {}".format(
+print(("The total field at point(x, y) = (1/4, 0) is {}".format(
     adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, -1/2, -1/2, 1/2, 10**-3)[0]
     + adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, -1/2, 1/2, -1/2, 10**-3)[0]
     + adaptive_trapezoidal_2d(function_to_integrate_140, 1/2, -1/2, 1/2, 1/2, 10**-3)[0]
-    + adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, 1/2, 1/2, 1/2, 10**-3)[0]))
+    + adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, 1/2, 1/2, 1/2, 10**-3)[0])))
 
 
 from numpy import zeros, linspace
@@ -109,7 +109,7 @@ for i, loc1 in enumerate(linspace(-SIZE, SIZE, 100)):
         def total_integral(x, y):
             inte = adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, -1/2, -1/2, 1/2, 10**-3)[0] + adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, -1/2, 1/2, -1/2, 10**-3)[0]+ adaptive_trapezoidal_2d(function_to_integrate_140, 1/2, -1/2, 1/2, 1/2, 10**-3)[0]+ adaptive_trapezoidal_2d(function_to_integrate_140, -1/2, 1/2, 1/2, 1/2, 10**-3)[0]
             if y == 0:
-                print("{}.{} percent complete".format(x, y))
+                print(("{}.{} percent complete".format(x, y)))
             return  inte
         
         return total_integral(i, j)
@@ -140,4 +140,4 @@ def E(x,y):
     return (-(dVdx(x,y)), -(dVdy(x,y)))
 
 
-print(E(50, 50), E(62, 50))
+print((E(50, 50), E(62, 50)))

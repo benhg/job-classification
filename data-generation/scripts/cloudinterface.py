@@ -73,7 +73,7 @@ def check_keypair(driver, configs):
         f = open(configs['ec2keypairfile'], 'w')
         f.write(str(key_pair.private_key))
         f.close()
-        os.chmod(configs['ec2keypairfile'], 0600)
+        os.chmod(configs['ec2keypairfile'], 0o600)
 
     else:
         sys.stderr.write("ec2keypairname and/or ec2keypairfile missing\n")
@@ -109,8 +109,8 @@ def read_configs(config_file):
                           'AWSSecretKey'   : cred_details[2] }
         config.update(credentials)
     else:
-        print "ec2credentialsfile , Missing"
-        print "ERROR: Cannot proceed without access to ec2credentialsfile"
+        print("ec2credentialsfile , Missing")
+        print("ERROR: Cannot proceed without access to ec2credentialsfile")
         exit(-1)
 
     return config
@@ -120,15 +120,15 @@ def node_status(driver, node_uuids):
     for node in nodes:
         if node.uuid in node_uuids :
             if node.state == NodeState.RUNNING:
-                print node.uuid, "R"
+                print(node.uuid, "R")
             elif node.state == NodeState.PENDING:
-                print node.uuid, "Q"
+                print(node.uuid, "Q")
             elif node.state == NodeState.TERMINATED:
-                print node.uuid, "C"
+                print(node.uuid, "C")
             elif node.state == NodeState.STOPPED:
-                print node.uuid, "C"
+                print(node.uuid, "C")
             elif node.state == NodeState.UNKNOWN:
-                print node.uuid, "Q" # This state could be wrong
+                print(node.uuid, "Q") # This state could be wrong
             else:
                 sys.stderr.write("Node state unknown/invalid " + str(NODESTATE[node.state]))
                 return -1
@@ -155,7 +155,7 @@ def node_start(driver, configs, WORKER_STRING):
                                     ex_keyname=configs['ec2keypairname'],
                                     ex_securitygroup=configs['ec2securitygroup'],
                                     ex_userdata=userdata )
-    print 'jobid={0}'.format(node.uuid)
+    print('jobid={0}'.format(node.uuid))
 
 # node_names is a list
 def node_terminate(driver, node_uuids):

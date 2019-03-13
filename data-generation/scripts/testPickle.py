@@ -26,8 +26,8 @@ c = conn.cursor()
 
 c.execute("BEGIN")
 for item in items:
-    int_id = item.keys()[0]
-    wos_id = item.values()[0]
+    int_id = list(item.keys())[0]
+    wos_id = list(item.values())[0]
     if int_id > 177056639:
         time2 = time.time() - time1
         if flag == 0:

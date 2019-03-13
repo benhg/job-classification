@@ -2,7 +2,7 @@
 
 
 
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 from numpy import *
 from pylab import *
 

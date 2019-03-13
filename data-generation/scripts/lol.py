@@ -2,10 +2,10 @@ from math import sqrt
 
 def prime_sieve(n):
     sieve = [True] * (n/2)
-    for i in xrange(3,int(n**0.5)+1,2):
+    for i in range(3,int(n**0.5)+1,2):
         if sieve[i/2]:
             sieve[i*i/2::i] = [False] * ((n-i*i-1)/(2*i)+1)
-    return [2] + [2*i+1 for i in xrange(1,n/2) if sieve[i]]
+    return [2] + [2*i+1 for i in range(1,n/2) if sieve[i]]
 
 def is_prime(n):
     if n <= 1: return False
@@ -26,4 +26,4 @@ for b in prime_sieve(L):
         while is_prime(n*n + a*n + b): n += 1
         if n>nmax: nmax, p = n, a*b
 
-print "Project Euler 27 Solution = ", p, "Sequence length =", nmax
+print("Project Euler 27 Solution = ", p, "Sequence length =", nmax)

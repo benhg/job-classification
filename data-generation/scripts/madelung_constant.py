@@ -1,6 +1,6 @@
 # ============ PROBLEM 2 ============
 print("ENTERING P. 2 (2.9): Madelung Constant")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 print("This version is really slow because it grows in O(n^3), so I only set L to 10")
 
 M = 0
@@ -12,10 +12,10 @@ for i in range(-L, L+1):
 
                 M += ((-1)**(i+j+k))/((i**2 + j**2 + k**2)**(1/2))
 
-print("M=", M)
+print(("M=", M))
 
 print("This version is faster, so I set L to 100")
-_ = input("Press any key when ready to continue")
+_ = eval(input("Press any key when ready to continue"))
 
 from numpy import indices, sqrt
 
@@ -37,5 +37,5 @@ off_axis = M[1:, 1:, 1:].sum()
 
 madelung = (2 * axes) + (4 * faces) + (8 * off_axis)
 
-print("M= ", madelung)
+print(("M= ", madelung))
 print("EXITING PROBLEM 2")

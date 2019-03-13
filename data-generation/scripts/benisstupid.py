@@ -34,7 +34,7 @@ def execute_wait (cmd, walltime):
         retcode = proc.returncode
 
     except Exception as e:
-        print("Caught exception : {0}".format(e))
+        print(("Caught exception : {0}".format(e)))
         logger.warn("Execution of command [%s] failed due to \n %s ",  (cmd, e))
 
     return (retcode, stdout.decode("utf-8"), stderr.decode("utf-8"))
@@ -86,7 +86,7 @@ class Slurm(ExecutionProvider):
         [status...]
         '''
 
-        job_id_list  = ','.join(self.resources.keys())
+        job_id_list  = ','.join(list(self.resources.keys()))
 
         jobs_missing = list(self.resources.keys())
 
@@ -138,17 +138,17 @@ class Slurm(ExecutionProvider):
         try:
             submit_script = Template(template_string).substitute(**configs,
                                                                  jobname=job_name)
-            print("Script_filename : ", script_filename)
+            print(("Script_filename : ", script_filename))
             with open(script_filename, 'w') as f:
                 f.write(submit_script)
 
         except KeyError as e:
             logger.error("Missing keys for submit script : %s", e)
-            raise(ep_error.SchedulerMissingArgs(e.args, self.sitename))
+            raise ep_error
 
         except IOError as e:
             logger.error("Failed writing to submit script: %s", script_filename)
-            raise(ep_error.ScriptPathError(script_filename, e))
+            raise ep_error
 
         return True
 
@@ -242,9 +242,9 @@ class Slurm(ExecutionProvider):
 
         else :
             for resource in self.resources[0:size]:
-                print("Cancelling : ", resource['job_id'])
+                print(("Cancelling : ", resource['job_id']))
                 retcode, stdout, stderr = execute_wait("scancel {0}".format(resource['job_id']), 3)
-                print(retcode, stdout, stderr)
+                print((retcode, stdout, stderr))
 
         return count
 

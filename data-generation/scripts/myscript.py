@@ -20,7 +20,7 @@ print(topic)
 
 # In[4]:
 
-print(topic[0])
+print((topic[0]))
 
 
 # In[5]:
@@ -55,7 +55,7 @@ while True:
 # In[8]:
 
 print(coverage)
-print (len(coverage))
+print((len(coverage)))
 
 
 # In[9]:

@@ -140,14 +140,14 @@ class rudpConnection():
     		return True
 
 	def printConnection(self):
-		print '[RUDP Connection]'
-		print '\tdestAddr:', self.destAddr
-		print '\tpktId   :', self.pktId
-		print '\twait    :', self.wait
+		print('[RUDP Connection]')
+		print('\tdestAddr:', self.destAddr)
+		print('\tpktId   :', self.pktId)
+		print('\twait    :', self.wait)
 		try:
-			print '\taccept  :', self.accep
-			print '\ttime    :', self.time
-			print '\tdata    :', self.data
+			print('\taccept  :', self.accep)
+			print('\ttime    :', self.time)
+			print('\tdata    :', self.data)
 		except:
-			print 'NOT VALID'
+			print('NOT VALID')
 

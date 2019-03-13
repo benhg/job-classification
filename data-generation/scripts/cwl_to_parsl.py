@@ -119,7 +119,7 @@ Using CWL version: {}"""'''.format(
         var = next(iter(self.workflow['steps']))
         func = var if type(var) == str else self.workflow['steps'][var]['id']
         call = "{}({})".format(func, ", ".join(
-            ["'{}'".format(self.inputs[i]) for i in self.inputs.keys()]))
+            ["'{}'".format(self.inputs[i]) for i in list(self.inputs.keys())]))
         self.write(call)
 
     def translate_workflow(self, imports=[]):

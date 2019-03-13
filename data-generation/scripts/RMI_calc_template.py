@@ -65,7 +65,7 @@ def simps_err(f, a, b, h):
     return -1*(1/90)*(deltaT)**5*(f((b-a)/2))
 
 
-print(simps_err(inner_func, 0, 100, .1))
+print((simps_err(inner_func, 0, 100, .1)))
 
 ### CODE ###
 plot([.1*i for i in range(0, 1000, 10)], rmis, label='RMIs')

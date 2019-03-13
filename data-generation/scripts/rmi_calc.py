@@ -50,11 +50,11 @@ def simps_err(f, a, b, h):
 
 int_error = simps_err(potential_function, 0, 2*pi, .1)
 field_err = simps_err(field_function, 0, 2*pi, .1)
-print("Integral Estimate for Potential: ",
-      integrated_potential, "Estimated Error:", int_error)
+print(("Integral Estimate for Potential: ",
+      integrated_potential, "Estimated Error:", int_error))
 
-print("Integral Estimate for Field: ",
-      integrated_field, "Estimated Error:", field_err)
+print(("Integral Estimate for Field: ",
+      integrated_field, "Estimated Error:", field_err))
 
 
 print("PROBLEM 2C")
@@ -81,7 +81,7 @@ def adaptive_trapezoidal(f, a, b, delta):
 
 
 trap_field, t_err = adaptive_trapezoidal(field_function, 0, 2*pi, .001)
-print("Adaptive trapezoidal for field:", trap_field, "Error:", t_err)
+print(("Adaptive trapezoidal for field:", trap_field, "Error:", t_err))
 
 
 print("Problem 2D")

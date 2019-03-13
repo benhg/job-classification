@@ -32,8 +32,8 @@ prod = 0
 for i in range(len(M)-12):
     p = int(M[i])*int(M[i+1])*int(M[i+2])*int(M[i+3])*int(M[i+4])*int(M[i+5])*int(M[i+6])*int(M[i+7])*int(M[i+8])*int(M[i+9])*int(M[i+10])*int(M[i+11])*int(M[i+12])
     if p > prod: prod = p
-print prod
+print(prod)
  
 elapsed = (time.time() - start)
  
-print "time: %s seconds" % elapsed
+print("time: %s seconds" % elapsed)

@@ -40,7 +40,7 @@ while percentile!=0:
     #print(percentile_contributors)
     with_email=sum(x != 'None' for x in percentile_contributors)
     #print(with_email)
-    print(percentile_contributors, percentile)
+    print((percentile_contributors, percentile))
     topicCoverage=float(with_email/total)
     percentile_out[percentile] = topicCoverage
     contribs = cursor.fetchmany(percentile_size)

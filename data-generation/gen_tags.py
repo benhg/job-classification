@@ -6,6 +6,8 @@ which are generated as derivatives of other scripts. One example of
 such a feature would be source lines of code, or number of loops.
 This script should process a python "job" (mostly just python scripts for now)
 and add those "tags" to a data file about them.
+
+There will soon be a document about what exactly a "job" is
 """
 import ast
 import csv

@@ -4,10 +4,13 @@ import re
 
 client = boto3.client('rekognition')
 
-def index_images(folder_name, collection_name='ci-faces', bucket_name='ci-magicmirror'):
+
+def index_images(folder_name, collection_name='ci-faces',
+                 bucket_name='ci-magicmirror'):
     s3 = boto3.resource('s3')
     bucket = s3.Bucket(bucket_name)
-    objects = [x for x in bucket.objects.all() if x.key.startswith(folder_name)]
+    objects = [x for x in bucket.objects.all(
+    ) if x.key.startswith(folder_name)]
     for i, object in enumerate(objects):
         try:
             response = client.index_faces(
@@ -18,7 +21,7 @@ def index_images(folder_name, collection_name='ci-faces', bucket_name='ci-magicm
                         'Name': object.key
                     }
                 },
-                ExternalImageId = folder_name + str(i),
+                ExternalImageId=folder_name + str(i),
                 DetectionAttributes=[
                     'ALL'
                 ]
@@ -27,26 +30,31 @@ def index_images(folder_name, collection_name='ci-faces', bucket_name='ci-magicm
             print(e)
 
 
-def index_collection(names, collection_name='ci-faces', bucket='ci-magicmirror', create=False):
+def index_collection(names, collection_name='ci-faces',
+                     bucket='ci-magicmirror', create=False):
     if create:
         try:
             response = client.create_collection(CollectionId=collection_name)
         except Exception as e:
             print(e)
     for name in names:
-        index_images(folder_name=name, collection_name=collection_name, bucket_name=bucket)
+        index_images(
+            folder_name=name,
+            collection_name=collection_name,
+            bucket_name=bucket)
 
 
-def search_image(image, collection_name='ci-faces', bucket_name='ci-magicmirror', max_faces=3, method='S3'):
+def search_image(image, collection_name='ci-faces',
+                 bucket_name='ci-magicmirror', max_faces=3, method='S3'):
     try:
         if method == 'S3':
             response = client.search_faces_by_image(
                 CollectionId=collection_name,
                 Image={
-                        'S3Object': {
-                            'Bucket': bucket_name,
-                            'Name': image
-                        }
+                    'S3Object': {
+                        'Bucket': bucket_name,
+                        'Name': image
+                    }
                 },
                 MaxFaces=max_faces
             )
@@ -67,13 +75,19 @@ def search_image(image, collection_name='ci-faces', bucket_name='ci-magicmirror'
 
 
 def get_name(response):
-    names = {'beng': 'Ben Glick', 'alexf': 'Alex Foster', 'rohank': 'Rohan Kumar', 'logany': 'Logan Young', 'monical': 'Monica Lewis', 'helenaa':'Helena Abney-McPeek'}
+    names = {
+        'beng': 'Ben Glick',
+        'alexf': 'Alex Foster',
+        'rohank': 'Rohan Kumar',
+        'logany': 'Logan Young',
+        'monical': 'Monica Lewis',
+        'helenaa': 'Helena Abney-McPeek'}
 
     matches = response['FaceMatches']
     face_id = None
     if matches:
         image_id = matches[0]['Face']['ExternalImageId']
-        pattern = re.compile('([a-zA-Z]+)\d+')
+        pattern = re.compile(r'([a-zA-Z]+)\d+')
         result = re.search(pattern=pattern, string=image_id)
         face_id = result.groups()[0].lower() if result else None
     return names.get(face_id, 'Average Human')

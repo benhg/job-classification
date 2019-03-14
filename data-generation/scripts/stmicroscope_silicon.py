@@ -28,21 +28,22 @@ def w(x, y, data):
 
 def dwdx(x, y, h, data):
     """Partial W over Partial X"""
-    return (w(x, y, data) + w(x+1, y, data))/h
+    return (w(x, y, data) + w(x + 1, y, data)) / h
 
 
 def dwdy(x, y, h, data):
     """Partial W over Partial Y"""
-    return (w(x, y, data) + w(x, y+1, data))/h
+    return (w(x, y, data) + w(x, y + 1, data)) / h
 
 
 def I(x, y, phi, h, data):
-    return ((cos(phi)*dwdx(x, y, h, data))+(sin(phi)*dwdy(x, y, h, data)))/(sqrt((dwdx(x, y, h, data))**2+(dwdy(x, y, h, data))**2+1))
+    return ((cos(phi) * dwdx(x, y, h, data)) + (sin(phi) * dwdy(x, y, h, data))
+            ) / (sqrt((dwdx(x, y, h, data))**2 + (dwdy(x, y, h, data))**2 + 1))
 
 
 print("""Loading in STM data and plotting it""")
 dat = load_file("stm.txt")
-PHI = pi/4
+PHI = pi / 4
 H_dat = 250
 
 d_plot = zeros([len(dat), len(dat[0])])

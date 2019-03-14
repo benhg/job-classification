@@ -28,7 +28,7 @@ class ParslTranslator:
         """Write a line of code at the correct indentaiton level"""
         self.code.append(self.tab * self.level + string)
 
-    def start_parsl_app(self, name, inputs,  apptype='bash', dfkname='dfk'):
+    def start_parsl_app(self, name, inputs, apptype='bash', dfkname='dfk'):
         """Write the decorator and function definition of a parsl app"""
         self.write('@App("{}", {})'.format(apptype, dfkname))
         self.write("def {}({}):".format(
@@ -79,8 +79,8 @@ Using CWL version: {}"""'''.format(
         """Declare CWL global input as python variable"""
         self.write("#GLOBAL INPUTS")
         for item in self.workflow.get('inputs', ""):
-            tmp = item if type(item) == str else item['id']
-            val = item if type(item) == str else item['type']
+            tmp = item if isinstance(item, str) else item['id']
+            val = item if isinstance(item, str) else item['type']
             self.declare_variable(tmp, value=val)
             self.inputs[tmp] = val
         self.write("#END OF GLOBAL INPUTS\n")
@@ -89,20 +89,20 @@ Using CWL version: {}"""'''.format(
         """Declare CWL global output as python variable"""
         self.write("#GLOBAL OUTPUTS")
         for item in self.workflow.get('outputs', ""):
-            tmp = item if type(item) == str else item['id']
-            val = item if type(item) == str else item['type']
+            tmp = item if isinstance(item, str) else item['id']
+            val = item if isinstance(item, str) else item['type']
             self.declare_variable(tmp, value=val)
         self.write("#END OF GLOBAL OUTPUTS\n")
 
     def create_app_from_exec_step(self, step):
         """Convert execution step from CWL to Parsl bash app"""
-        tmp = step if type(step) == str else step['id']
-        if type(step) == str:
+        tmp = step if isinstance(step, str) else step['id']
+        if isinstance(step, str):
             step = self.workflow['steps'][step]
         self.start_parsl_app(
-            tmp, [i if type(i) == str else i['id'] for i in step.get('inputs', step.get('in', ""))])
+            tmp, [i if isinstance(i, str) else i['id'] for i in step.get('inputs', step.get('in', ""))])
         base_cmd = "cmd_line = '{} ".format(step['run'])
-        inputs = ['{{{}}}'.format(j if type(j) == str else j['id'])
+        inputs = ['{{{}}}'.format(j if isinstance(j, str) else j['id'])
                   for j in step.get('inputs', step.get('in', []))]
         self.write(base_cmd + " ".join(inputs) + "'\n")
         self.dedent()
@@ -117,7 +117,8 @@ Using CWL version: {}"""'''.format(
         """Automatically call first function with global inputs as input values.
         This expects the first task to call the rest of the tasks."""
         var = next(iter(self.workflow['steps']))
-        func = var if type(var) == str else self.workflow['steps'][var]['id']
+        func = var if isinstance(
+            var, str) else self.workflow['steps'][var]['id']
         call = "{}({})".format(func, ", ".join(
             ["'{}'".format(self.inputs[i]) for i in list(self.inputs.keys())]))
         self.write(call)

@@ -1,6 +1,7 @@
 
 # Recurring Decimal
 
+
 def get_recurring_decimal(n):
     dividend = 1
     previous_dividends = []
@@ -16,9 +17,10 @@ def get_recurring_decimal(n):
         dividend = remainder
     return decimal
 
+
 max_decimal = 0
 max_d = 0
-for i in range(1,1000):
+for i in range(1, 1000):
     reciprocal = get_recurring_decimal(i)
     print(i, reciprocal)
     if len(reciprocal) > max_decimal:

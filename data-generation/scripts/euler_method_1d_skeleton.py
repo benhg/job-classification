@@ -7,7 +7,7 @@ def f(x, t):
 
 
 def euler_solve(f, a, b, N, x_0=0):
-    h = abs((b-a)/N)
+    h = abs((b - a) / N)
     x = x_0
     xpoints = []
     tpoints = arange(a, b, h)

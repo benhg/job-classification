@@ -5,7 +5,7 @@ import csv
 import random
 
 """This file was made in order to generate a test csv from a pre-selected wos_id
-for the purpose of having real (though not randomly selected) data to test our 
+for the purpose of having real (though not randomly selected) data to test our
 qualtrics survey with"""
 
 conn = sqlite3.connect("/Users/Ben/jevin_west/edge_data.db")
@@ -17,6 +17,7 @@ class DB:
     The only real difference here is that this DB class will try a
     query again if it catches an operational exception from mySQL.
     For example, if it cannot connect to the db, it will try again"""
+
     def connect(self):
         self.conn = mysql.connect(host="wos2.cvirc91pe37a.us-east-1.rds.amazonaws.com",
                                   user="benjaminglick",
@@ -48,8 +49,13 @@ def append_to_csv(wos_id, cited_wos_ids, field):
                       'abstract2', 'year2', 'title3', 'journal3', 'authors3',
                       'abstract3', 'year3']
     list_of_citation_wos_ids = cited_wos_ids
-    citations = [get_info(cited_wos_id,n) for n,cited_wos_id in list_of_citation_wos_ids]
-    c = csv.DictWriter(open("{}.csv".format(field), "a"), fieldnames=csv_fieldnames)
+    citations = [get_info(cited_wos_id, n)
+                 for n, cited_wos_id in list_of_citation_wos_ids]
+    c = csv.DictWriter(
+        open(
+            "{}.csv".format(field),
+            "a"),
+        fieldnames=csv_fieldnames)
     for citation in citations:
         line.update(citation)
     db.connect()
@@ -127,5 +133,3 @@ def get_author_citations(wos_id):
         # want the part before the .
         citations.append(res[0].split(".")[0])
     return citations
-
-

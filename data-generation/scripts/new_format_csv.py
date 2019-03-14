@@ -1,4 +1,4 @@
-def append_to_csv(wos_id,cited_wos_ids, field):
+def append_to_csv(wos_id, cited_wos_ids, field):
     """Populates csv with lead author of paper with wos_id provided
     NOTE:WOS:000246020100009 is the one we're using for now"""
     list_of_citation_wos_ids = cited_wos_ids

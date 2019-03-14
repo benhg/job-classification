@@ -18,19 +18,19 @@ def derivs(state, t):
     dydx[0] = state[1]
 
     del_ = state[2] - state[0]
-    den1 = (M1 + M2)*L1 - M2*L1*cos(del_)*cos(del_)
-    dydx[1] = (M2*L1*state[1]*state[1]*sin(del_)*cos(del_) +
-               M2*G*sin(state[2])*cos(del_) +
-               M2*L2*state[3]*state[3]*sin(del_) -
-               (M1 + M2)*G*sin(state[0]))/den1
+    den1 = (M1 + M2) * L1 - M2 * L1 * cos(del_) * cos(del_)
+    dydx[1] = (M2 * L1 * state[1] * state[1] * sin(del_) * cos(del_) +
+               M2 * G * sin(state[2]) * cos(del_) +
+               M2 * L2 * state[3] * state[3] * sin(del_) -
+               (M1 + M2) * G * sin(state[0])) / den1
 
     dydx[2] = state[3]
 
-    den2 = (L2/L1)*den1
-    dydx[3] = (-M2*L2*state[3]*state[3]*sin(del_)*cos(del_) +
-               (M1 + M2)*G*sin(state[0])*cos(del_) -
-               (M1 + M2)*L1*state[1]*state[1]*sin(del_) -
-               (M1 + M2)*G*sin(state[2]))/den2
+    den2 = (L2 / L1) * den1
+    dydx[3] = (-M2 * L2 * state[3] * state[3] * sin(del_) * cos(del_) +
+               (M1 + M2) * G * sin(state[0]) * cos(del_) -
+               (M1 + M2) * L1 * state[1] * state[1] * sin(del_) -
+               (M1 + M2) * G * sin(state[2])) / den2
 
     return dydx
 
@@ -51,11 +51,11 @@ state = np.radians([th1, w1, th2, w2])
 # integrate your ODE using scipy.integrate.
 y = integrate.odeint(derivs, state, t)
 
-x1 = L1*sin(y[:, 0])
-y1 = -L1*cos(y[:, 0])
+x1 = L1 * sin(y[:, 0])
+y1 = -L1 * cos(y[:, 0])
 
-x2 = L2*sin(y[:, 2]) + x1
-y2 = -L2*cos(y[:, 2]) + y1
+x2 = L2 * sin(y[:, 2]) + x1
+y2 = -L2 * cos(y[:, 2]) + y1
 
 
 def energy(state):
@@ -63,10 +63,10 @@ def energy(state):
     w1 = state[1]
     th2 = state[2]
     w2 = state[3]
-    energy = -1 * (M1*(L1**2) * (w1**2 +
-                                 (0.5 * (w2**2)) +
-                                 (w1*w2 *
-                                  cos(th1-th2))) - (M1 * G * L1*(2*cos(th1) + cos(th2))))
+    energy = -1 * (M1 * (L1**2) * (w1**2 +
+                                   (0.5 * (w2**2)) +
+                                   (w1 * w2 *
+                                    cos(th1 - th2))) - (M1 * G * L1 * (2 * cos(th1) + cos(th2))))
     return energy
 
 

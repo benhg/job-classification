@@ -43,8 +43,8 @@ def setup()-> Future:
 
 
 @App('bash', dfk)
-def sort(unsorted: str, stdout: str="output/sorted.out",
-         stderr: str="output/sorted.err")-> Future:
+def sort(unsorted: str, stdout: str = "output/sorted.out",
+         stderr: str = "output/sorted.err")-> Future:
     """Call sort executable on file `unsorted`"""
     cmd_line = "sort {}".format(unsorted)
 

@@ -3,7 +3,7 @@ from math import *
 
 
 def f(x):
-    return sqrt(1-log(x))
+    return sqrt(1 - log(x))
 
 
 err = 10**-5

@@ -6,7 +6,16 @@ import multiprocessing
 specific people) (local half)"""
 
 conn = sqlite3.connect('edge_data.db')
-interested_wos_ids = ['WOS:000347762000002', 'WOS:000355255600021', 'WOS:000349297300005', 'WOS:000353934700007', 'WOS:000354391000015', 'WOS:000359594300010', 'WOS:000355491800001', 'WOS:000358808900002', ]
+interested_wos_ids = [
+    'WOS:000347762000002',
+    'WOS:000355255600021',
+    'WOS:000349297300005',
+    'WOS:000353934700007',
+    'WOS:000354391000015',
+    'WOS:000359594300010',
+    'WOS:000355491800001',
+    'WOS:000358808900002',
+]
 
 
 def get_author_citations(wos_id):
@@ -54,7 +63,7 @@ def lookup(wos_id):
     ids_to_lookup = []
     print(wos_id)
     ids_to_lookup.extend(generate_citation_sample(wos_id))
-    print(("Done WIth "+wos_id))
+    print(("Done WIth " + wos_id))
     outfile.write(ids_to_lookup)
 
 

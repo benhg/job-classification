@@ -4,10 +4,11 @@ import csv
 import MySQLdb as mysql
 
 """This file was made in order to generate a test csv from a pre-selected wos_id
-for the purpose of having real (though not randomly selected) data to test our 
+for the purpose of having real (though not randomly selected) data to test our
 qualtrics survey with"""
 
-#conn=sqlite3.connect("/Users/Ben/jevin_west/edge_data.db")
+# conn=sqlite3.connect("/Users/Ben/jevin_west/edge_data.db")
+
 
 class DB:
     conn = None
@@ -15,9 +16,13 @@ class DB:
     The only real difference here is that this DB class will try a
     query again if it catches an operational exception from mySQL.
     For example, if it cannot connect to the db, it will try again"""
+
     def connect(self):
-        self.conn = mysql.connect(host="wos2.cvirc91pe37a.us-east-1.rds.amazonaws.com",user="benjaminglick"
-                 ,passwd="cfa1fc20f3a7475aa41c",db="wos2")
+        self.conn = mysql.connect(
+            host="wos2.cvirc91pe37a.us-east-1.rds.amazonaws.com",
+            user="benjaminglick",
+            passwd="cfa1fc20f3a7475aa41c",
+            db="wos2")
 
     def query(self, sql):
         try:
@@ -30,22 +35,23 @@ class DB:
             cursor.execute(sql)
         return cursor
 
+
 db = DB()
 
 
 def get_personal_citations(personal_citations):
     """Will go through list of citations that I generated manually"""
-    citations=[]
-    c=conn.cursor()
+    citations = []
+    c = conn.cursor()
     for cite in personal_citations:
-            sql = "select wos_id from mapping where int_id={}".format(cite)
-            c.execute(sql)
-            res = c.fetchone()
-            citations.append(res[0])
+        sql = "select wos_id from mapping where int_id={}".format(cite)
+        c.execute(sql)
+        res = c.fetchone()
+        citations.append(res[0])
     return citations
 
 
-def append_to_csv(wos_id,cited_wos_ids, field):
+def append_to_csv(wos_id, cited_wos_ids, field):
     """Populates csv with lead author of paper with wos_id provided
     NOTE:WOS:000246020100009 is the one we're using for now"""
     list_of_citation_wos_ids = cited_wos_ids
@@ -71,10 +77,10 @@ def append_to_csv(wos_id,cited_wos_ids, field):
 def create_csv(field):
     """Creates csv in the format that qualtrics needs"""
     c = csv.writer(open("{}_papers.csv".format(field), "w"))
-    c.writerow(["First Name", "Last Name","Email", "title", "abstract", "year",
-                "amzn", "cite1", "cite2","cite3", "cite4","cite5","cite6",
-                "cite7", "cite8", "cite9","cite10","cite11","cite12","cite13",
-                "cite14", "cite15", "cite16","cite17","cite18","cite19","cite20"])
+    c.writerow(["First Name", "Last Name", "Email", "title", "abstract", "year",
+                "amzn", "cite1", "cite2", "cite3", "cite4", "cite5", "cite6",
+                "cite7", "cite8", "cite9", "cite10", "cite11", "cite12", "cite13",
+                "cite14", "cite15", "cite16", "cite17", "cite18", "cite19", "cite20"])
 
 
 def get_info(citation_wos_id):
@@ -91,13 +97,15 @@ def get_info(citation_wos_id):
     print(res)
     year = res[0][0]
     lead_author = res[0][1]
-    title=res[0][2]
-    source=res[0][3]
+    title = res[0][2]
+    source = res[0][3]
     if len(res) == 1:
         citation = "[{} {}] {}. ({})".format(lead_author, year, title, source)
     else:
-        citation = "[{} et al. {} {}. ({})]".format(lead_author, year, title, source)
+        citation = "[{} et al. {} {}. ({})]".format(
+            lead_author, year, title, source)
     return citation
+
 
 def generate_20_cites(cited_wos_ids):
     # hardcoded in because we have to run the MySQL part on a different machine
@@ -134,10 +142,40 @@ def get_author_citations(wos_id):
 
 
 #cited_wos_ids = get_author_citations("WOS:000263297400007")
-#print(cited_wos_ids)
-cited_wos_ids = ['WOS:000208105700003', 'WOS:A1996UD86500006', 'WOS:A1983RC89000001', 'WOS:000167280800001', 'WOS:A1997XW08900005', 'WOS:000175859100005', 'WOS:000174964500006', 'WOS:000180350600010', 'WOS:000183049000004', 'WOS:000184522300004', 'WOS:000229646000006', 'WOS:000230606900006', 'WOS:000235678300004', 'WOS:000237814400001', 'WOS:000237814400005', 'WOS:000249060300001', 'WOS:000263297400007.8', 'WOS:000207896800012', '000344522400010.63', '000344522400010.68', 'WOS:000263297400007.6', 'WOS:000263297400007.13', 'WOS:000263297400007.18', '000343806602114.43', '000320167100003.73', 'WOS:000263297400007.29', '000315718000006.23', '000345758700008.7', '000320371300007.9', '000346190400002.53']
+# print(cited_wos_ids)
+cited_wos_ids = [
+    'WOS:000208105700003',
+    'WOS:A1996UD86500006',
+    'WOS:A1983RC89000001',
+    'WOS:000167280800001',
+    'WOS:A1997XW08900005',
+    'WOS:000175859100005',
+    'WOS:000174964500006',
+    'WOS:000180350600010',
+    'WOS:000183049000004',
+    'WOS:000184522300004',
+    'WOS:000229646000006',
+    'WOS:000230606900006',
+    'WOS:000235678300004',
+    'WOS:000237814400001',
+    'WOS:000237814400005',
+    'WOS:000249060300001',
+    'WOS:000263297400007.8',
+    'WOS:000207896800012',
+    '000344522400010.63',
+    '000344522400010.68',
+    'WOS:000263297400007.6',
+    'WOS:000263297400007.13',
+    'WOS:000263297400007.18',
+    '000343806602114.43',
+    '000320167100003.73',
+    'WOS:000263297400007.29',
+    '000315718000006.23',
+    '000345758700008.7',
+    '000320371300007.9',
+    '000346190400002.53']
 twenty_cites = generate_20_cites(cited_wos_ids)
 
 print(twenty_cites)
 create_csv("business")
-append_to_csv('WOS:000263297400007',twenty_cites, 'business')
+append_to_csv('WOS:000263297400007', twenty_cites, 'business')

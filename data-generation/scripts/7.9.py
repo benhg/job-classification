@@ -12,6 +12,7 @@ def gaussian(x, y, Lx, Ly):
         for m in range(-1, 1)
     ])
 
+
 def part_a():
     img_data = np.loadtxt('blur.txt')
     pylab.imshow(img_data)

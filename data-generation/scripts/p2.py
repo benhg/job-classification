@@ -14,13 +14,13 @@ def setup()-> Future:
 
 
 @App('bash', dfk)
-def mysim(stdout: str="sim.out", stderr: str="sim.err")-> Future:
+def mysim(stdout: str = "sim.out", stderr: str = "sim.err")-> Future:
     """Run command line utility simulate with no params"""
     cmd_line = "simulate"
 
 
 @App('python', dfk)
-def many_sims(runs: int=10)-> Future:
+def many_sims(runs: int = 10)-> Future:
     """launch many concurrent simulations"""
     for i in range(runs):
         outputfile = "sim_{}".format(i)

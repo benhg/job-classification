@@ -46,9 +46,9 @@ def compile_app()->Future:
 
 
 @App('bash', dfk)
-def mpi_pi(nproc: int, intervals: int, duration: int, app: str="mpi_pi",
-           mpilib: str='mpiexec', stdout: str="mpi_pi.out",
-           stderr: str="mpi_pi.err")-> Future:
+def mpi_pi(nproc: int, intervals: int, duration: int, app: str = "mpi_pi",
+           mpilib: str = 'mpiexec', stdout: str = "mpi_pi.out",
+           stderr: str = "mpi_pi.err")-> Future:
     """Call mpi_pi from cli"""
     cmd_line = "{} -np {} {} {} {}".format(mpilib,
                                            nproc, app, intervals, duration)
@@ -56,7 +56,7 @@ def mpi_pi(nproc: int, intervals: int, duration: int, app: str="mpi_pi",
 
 @App('python', dfk)
 def many_mpi_pi(time: int, nproc: int, app: int, intervals: int,
-                duration: int, n_runs: int=10)-> Future:
+                duration: int, n_runs: int = 10)-> Future:
     """Call many copies of mpi_pi concurrently"""
     fus = []
     files = []
@@ -69,8 +69,8 @@ def many_mpi_pi(time: int, nproc: int, app: int, intervals: int,
 
 
 @App('bash', dfk)
-def summarize(pi_runs: list=[], deps: list=[], stdout: str="summarize.out",
-              stderr: str="summarize.err")-> Future:
+def summarize(pi_runs: list = [], deps: list = [], stdout: str = "summarize.out",
+              stderr: str = "summarize.err")-> Future:
     """Create summary file"""
     cmd_line = 'grep "^pi" {}'.format(" ".join([str(i) for i in pi_runs]))
 

@@ -11,7 +11,7 @@ while True:
     rand = random.randint(0, 10)
     print('waiting for a connection', file=sys.stderr)
     message, address = serverSocket.recvfrom(1024)
-    print('Recieved" %s from %s' %(message,address))
+    print('Recieved" %s from %s' % (message, address))
     message = message.upper()
     if rand >= 0:
-        serverSocket.sendto(message, address) 
+        serverSocket.sendto(message, address)

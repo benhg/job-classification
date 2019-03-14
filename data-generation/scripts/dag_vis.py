@@ -40,7 +40,7 @@ class DFKListener():
         return self.edges_list
 
     def create_nodes(self, dfke=None):
-        """Go through dfk's task listing and 
+        """Go through dfk's task listing and
         create a node in our graph for each task"""
         dfk = dfke if dfke else self.dfk
         for task in dfk.tasks:
@@ -99,7 +99,7 @@ require(['vis'], function (vis){
          nodes: nodes,
          edges: edges
      };
-     var options = {interaction:{hover:true}, 
+     var options = {interaction:{hover:true},
                    layout: {
                     hierarchical: {
                         direction: 'UD'
@@ -107,16 +107,16 @@ require(['vis'], function (vis){
                    };
      var network = new vis.Network(container, data, options);
      network.on("hoverNode", function (params) {
-             
+
      });
      network.on("hoverEdge", function (params) {
-            
+
      });
      network.on("blurNode", function (params) {
-             
+
      });
      network.on("blurEdge", function (params) {
-             
+
      });
 });"""))
 

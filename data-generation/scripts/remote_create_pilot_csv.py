@@ -3,8 +3,9 @@ import MySQLdb as mysql
 import ast
 import multiprocessing
 
-"""Creates pilot csv for use with pilot sample of survey (we are looking for 
+"""Creates pilot csv for use with pilot sample of survey (we are looking for
 specific people) (remote half)"""
+
 
 class DB():
     conn = None
@@ -51,9 +52,15 @@ def append_to_csv(tuple):
                       'abstract1', 'year1', 'title2', 'journal2', 'authors2',
                       'abstract2', 'year2', 'title3', 'journal3', 'authors3',
                       'abstract3', 'year3']
-    list_of_citation_wos_ids = ast.literal_eval(open('{}.txt'.format(wos_id)).read())
-    citations = [get_info(cited_wos_id, n) for n, cited_wos_id in enumerate(list_of_citation_wos_ids)]
-    c = csv.DictWriter(open("{}_data.csv".format(field), "a"), fieldnames=csv_fieldnames)
+    list_of_citation_wos_ids = ast.literal_eval(
+        open('{}.txt'.format(wos_id)).read())
+    citations = [get_info(cited_wos_id, n)
+                 for n, cited_wos_id in enumerate(list_of_citation_wos_ids)]
+    c = csv.DictWriter(
+        open(
+            "{}_data.csv".format(field),
+            "a"),
+        fieldnames=csv_fieldnames)
     for citation in citations:
         line.update(citation)
     db.connect()
@@ -108,4 +115,3 @@ def create_csv(field):
                 'abstract1', 'year1', 'title2', 'journal2', 'authors2',
                 'abstract2', 'year2', 'title3', 'journal3', 'authors3',
                 'abstract3', 'year3'])
-

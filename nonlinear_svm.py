@@ -1,8 +1,10 @@
 """
-This file will use SKLearn Linear SVMs to create a model so we can
+This file will use SKLearn Nonlinear SVMs to create a model so we can
 start guessing how jobs will behave
 
 Gee, I hope this works reasonably well.
+
+based on first output, nonlinear seems to be giving a 95% precision
 """
 import numpy as np
 import pandas as pd

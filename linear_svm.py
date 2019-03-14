@@ -3,6 +3,9 @@ This file will use SKLearn Linear SVMs to create a model so we can
 start guessing how jobs will behave
 
 Gee, I hope this works reasonably well.
+
+based on first output, linear seems to be giving a 75% precision
+
 """
 import numpy as np
 import pandas as pd

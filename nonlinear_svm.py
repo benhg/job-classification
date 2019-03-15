@@ -9,7 +9,6 @@ based on first output, nonlinear seems to be giving a 95% precision
 import numpy as np
 import pandas as pd
 
-
 features = pd.read_csv("data-generation/jobs_features.csv")
 labels = pd.read_csv("data-generation/job_labels.csv")
 
@@ -18,19 +17,18 @@ all_data['name'] = pd.factorize(all_data['name'])[0]
 all_data['class'] = pd.factorize(all_data['class'])[0]
 all_data['file'] = pd.factorize(all_data['file'])[0]
 
-X = all_data.drop('class', axis=1)  
+X = all_data.drop('class', axis=1)
 y = all_data['class']
 
-from sklearn.model_selection import train_test_split  
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.20)  
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20)
 
-from sklearn.svm import SVC  
-svclassifier = SVC(kernel='poly')  
-svclassifier.fit(X_train, y_train)  
+from sklearn.svm import SVC
+svclassifier = SVC(kernel='poly')
+svclassifier.fit(X_train, y_train)
 
-y_pred = svclassifier.predict(X_test)  
+y_pred = svclassifier.predict(X_test)
 
-
-from sklearn.metrics import classification_report, confusion_matrix  
-print(confusion_matrix(y_test,y_pred))  
-print(classification_report(y_test,y_pred))  
+from sklearn.metrics import classification_report, confusion_matrix
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))

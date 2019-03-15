@@ -1,7 +1,8 @@
 """
-This is exactly like the other neural net, but it is in Tensorflow's Eager mode
-So it should actually work lol
+This is exactly like the other neural net, but it is in 
+Tensorflow's Eager mode
 
+So it should actually work lol
 
 Initial loss= 4.640756607
 Step: 0001  loss= 4.640756607  accuracy= 0.1719
@@ -41,21 +42,16 @@ batch_size = 128
 display_step = 100
 
 # Network Parameters
-n_hidden_1 = 256 # 1st layer number of neurons
-n_hidden_2 = 256 # 2nd layer number of neurons
-n_hidden_3 = 256 # 3rd layer number of neurons
+n_hidden_1 = 256  # 1st layer number of neurons
+n_hidden_2 = 256  # 2nd layer number of neurons
+n_hidden_3 = 256  # 3rd layer number of neurons
 num_input = 5
-num_classes = 5 
+num_classes = 5
 
 # Using TF Dataset to split data into batches
-training_dataset = (
-    tf.data.Dataset.from_tensor_slices(
-        (
-            tf.cast(all_data[features].values, tf.float32),
-            tf.cast(all_data['class'].values, tf.int32)
-        )
-    )
-)
+training_dataset = (tf.data.Dataset.from_tensor_slices(
+    (tf.cast(all_data[features].values, tf.float32),
+     tf.cast(all_data['class'].values, tf.int32))))
 
 dataset = training_dataset
 dataset = dataset.repeat().batch(batch_size).prefetch(batch_size)
@@ -93,8 +89,9 @@ neural_net = NeuralNet()
 # Cross-Entropy loss function
 def loss_fn(inference_fn, inputs, labels):
     # Using sparse_softmax cross entropy
-    return tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
-        logits=inference_fn(inputs), labels=labels))
+    return tf.reduce_mean(
+        tf.nn.sparse_softmax_cross_entropy_with_logits(
+            logits=inference_fn(inputs), labels=labels))
 
 
 # Calculate accuracy
@@ -146,19 +143,13 @@ for step in range(num_steps):
         average_loss = 0.
         average_acc = 0.
 
-training_dataset = (
-    tf.data.Dataset.from_tensor_slices(
-        (
-            tf.cast(all_data[features].values, tf.float32),
-            tf.cast(all_data['class'].values, tf.int32)
-        )
-    )
-)
+training_dataset = (tf.data.Dataset.from_tensor_slices(
+    (tf.cast(all_data[features].values, tf.float32),
+     tf.cast(all_data['class'].values, tf.int32))))
 
 dataset = training_dataset
 dataset = dataset.repeat().batch(batch_size).prefetch(batch_size)
 dataset_iter = tfe.Iterator(dataset)
-
 
 d = dataset_iter.next()
 
@@ -166,7 +157,6 @@ x_test = d[0]
 
 y_test = tf.cast(d[1], dtype=tf.int64)
 # Evaluate model on the test set
-
 
 test_acc = accuracy_fn(neural_net, x_test, y_test)
 print("Testset Accuracy: {:.4f}".format(test_acc))

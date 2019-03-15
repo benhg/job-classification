@@ -105,7 +105,6 @@ with tf.Session() as sess:
 
     print("Optimization Finished!")
 
-    # Calculate accuracy for MNIST test images
     print("Testing Accuracy:", \
         sess.run(accuracy, feed_dict={X: mnist.test.images,
                                       Y: mnist.test.labels}))

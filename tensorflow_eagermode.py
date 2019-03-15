@@ -15,7 +15,6 @@ Step: 0700  loss= 0.260833085  accuracy= 0.8945
 Step: 0800  loss= 0.260931998  accuracy= 0.8961
 Step: 0900  loss= 0.170744628  accuracy= 0.9391
 Step: 1000  loss= 0.152507424  accuracy= 0.9456
-Traceback (most recent call last):
 
 """
 
@@ -116,7 +115,6 @@ for step in range(num_steps):
     # Iterate through the dataset
     d = dataset_iter.next()
 
-    # Images
     x_batch = d[0]
     # Labels
     y_batch = tf.cast(d[1], dtype=tf.int64)
@@ -146,8 +144,27 @@ for step in range(num_steps):
         average_loss = 0.
         average_acc = 0.
 
+training_dataset = (
+    tf.data.Dataset.from_tensor_slices(
+        (
+            tf.cast(all_data[features].values, tf.float32),
+            tf.cast(all_data['class'].values, tf.int32)
+        )
+    )
+)
+
+dataset = training_dataset
+dataset = dataset.repeat().batch(batch_size).prefetch(batch_size)
+dataset_iter = tfe.Iterator(dataset)
 
 
+d = dataset_iter.next()
+
+x_test = d[0]
+
+y_test = tf.cast(d[1], dtype=tf.int64)
 # Evaluate model on the test set
-test_acc = accuracy_fn(neural_net, testX, testY)
+
+
+test_acc = accuracy_fn(neural_net, x_test, y_test)
 print("Testset Accuracy: {:.4f}".format(test_acc))

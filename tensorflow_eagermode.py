@@ -3,18 +3,20 @@ This is exactly like the other neural net, but it is in Tensorflow's Eager mode
 So it should actually work lol
 
 
-Initial loss= 3.133107424
-Step: 0001  loss= 3.133107424  accuracy= 0.2109
-Step: 0100  loss= 1.206269741  accuracy= 0.6056
-Step: 0200  loss= 0.605294883  accuracy= 0.7402
-Step: 0300  loss= 0.490955472  accuracy= 0.7810
-Step: 0400  loss= 0.414512932  accuracy= 0.8125
-Step: 0500  loss= 0.364934355  accuracy= 0.8469
-Step: 0600  loss= 0.320001215  accuracy= 0.8689
-Step: 0700  loss= 0.260833085  accuracy= 0.8945
-Step: 0800  loss= 0.260931998  accuracy= 0.8961
-Step: 0900  loss= 0.170744628  accuracy= 0.9391
-Step: 1000  loss= 0.152507424  accuracy= 0.9456
+Initial loss= 4.640756607
+Step: 0001  loss= 4.640756607  accuracy= 0.1719
+Step: 0100  loss= 1.294759512  accuracy= 0.6077
+Step: 0200  loss= 0.572107673  accuracy= 0.7556
+Step: 0300  loss= 0.468368530  accuracy= 0.7945
+Step: 0400  loss= 0.431688845  accuracy= 0.8109
+Step: 0500  loss= 0.357956439  accuracy= 0.8453
+Step: 0600  loss= 0.281263858  accuracy= 0.8885
+Step: 0700  loss= 0.227537379  accuracy= 0.9144
+Step: 0800  loss= 0.243623480  accuracy= 0.9063
+Step: 0900  loss= 0.151595414  accuracy= 0.9508
+Step: 1000  loss= 0.132566571  accuracy= 0.9531
+Testset Accuracy: 0.9531
+
 
 """
 

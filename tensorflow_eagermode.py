@@ -3,18 +3,19 @@ This is exactly like the other neural net, but it is in Tensorflow's Eager mode
 So it should actually work lol
 
 
-Initial loss= 6.504652500
-Step: 0001  loss= 6.504652500  accuracy= 0.0703
-Step: 0100  loss= 1.455885291  accuracy= 0.5836
-Step: 0200  loss= 0.670523524  accuracy= 0.7340
-Step: 0300  loss= 0.551197588  accuracy= 0.7585
-Step: 0400  loss= 0.500018716  accuracy= 0.7826
-Step: 0500  loss= 0.447776973  accuracy= 0.8065
-Step: 0600  loss= 0.365615308  accuracy= 0.8476
-Step: 0700  loss= 0.323161423  accuracy= 0.8696
-Step: 0800  loss= 0.297757179  accuracy= 0.8913
-Step: 0900  loss= 0.259021401  accuracy= 0.9166
-Step: 1000  loss= 0.262708098  accuracy= 0.9096
+Initial loss= 3.133107424
+Step: 0001  loss= 3.133107424  accuracy= 0.2109
+Step: 0100  loss= 1.206269741  accuracy= 0.6056
+Step: 0200  loss= 0.605294883  accuracy= 0.7402
+Step: 0300  loss= 0.490955472  accuracy= 0.7810
+Step: 0400  loss= 0.414512932  accuracy= 0.8125
+Step: 0500  loss= 0.364934355  accuracy= 0.8469
+Step: 0600  loss= 0.320001215  accuracy= 0.8689
+Step: 0700  loss= 0.260833085  accuracy= 0.8945
+Step: 0800  loss= 0.260931998  accuracy= 0.8961
+Step: 0900  loss= 0.170744628  accuracy= 0.9391
+Step: 1000  loss= 0.152507424  accuracy= 0.9456
+Traceback (most recent call last):
 
 """
 
@@ -24,7 +25,6 @@ import pandas as pd
 tf.enable_eager_execution()
 tfe = tf.contrib.eager
 
-# Import MNIST data
 features = pd.read_csv("data-generation/jobs_features.csv")
 labels = pd.read_csv("data-generation/job_labels.csv")
 
@@ -32,17 +32,6 @@ all_data = features.merge(labels, left_on="name", right_on="file")
 all_data['class'] = pd.factorize(all_data['class'])[0]
 
 features = ["loops", "fdefs", "fcalls", "loads", "asmts"]
-
-training_dataset = (
-    tf.data.Dataset.from_tensor_slices(
-        (
-            tf.cast(all_data[features].values, tf.float32),
-            tf.cast(all_data['class'].values, tf.int32)
-        )
-    )
-)
-
-dataset = training_dataset
 
 # Parameters
 learning_rate = 0.001
@@ -53,8 +42,9 @@ display_step = 100
 # Network Parameters
 n_hidden_1 = 256 # 1st layer number of neurons
 n_hidden_2 = 256 # 2nd layer number of neurons
-num_input = 5 # MNIST data input (img shape: 28*28)
-num_classes = 5 # MNIST total classes (0-9 digits)
+n_hidden_3 = 256 # 3rd layer number of neurons
+num_input = 5
+num_classes = 5 
 
 # Using TF Dataset to split data into batches
 training_dataset = (
@@ -83,12 +73,16 @@ class NeuralNet(tfe.Network):
         # Hidden fully connected layer with 256 neurons
         self.layer2 = self.track_layer(
             tf.layers.Dense(n_hidden_2, activation=tf.nn.relu))
+        # Hidden fully connected layer with 256 neurons
+        self.layer3 = self.track_layer(
+            tf.layers.Dense(n_hidden_3, activation=tf.nn.relu))
         # Output fully connected layer with a neuron for each class
         self.out_layer = self.track_layer(tf.layers.Dense(num_classes))
 
     def call(self, x):
         x = self.layer1(x)
         x = self.layer2(x)
+        x = self.layer3(x)
         return self.out_layer(x)
 
 
@@ -154,6 +148,6 @@ for step in range(num_steps):
 
 
 
-# Evaluate model on the test image set
+# Evaluate model on the test set
 test_acc = accuracy_fn(neural_net, testX, testY)
 print("Testset Accuracy: {:.4f}".format(test_acc))

@@ -33,4 +33,4 @@ After we get the classification working, the next steps are pretty clear. We wou
 
 ## Who are we?
 
-The primary developer of this project is [Ben Glick](mailto:glick@lclark.edu). He's an undergraduate student at Lewis & Clark College in Portland Oregon. This project is supported by his advisor, Jens Mache. Please feel free to contact Ben (<glick@lclark.edu>) if you have any questions, comments or suggestions.
+The primary developer of this project is [Ben Glick](https://glick.cloud). He's an undergraduate student at Lewis & Clark College in Portland Oregon. This project is supported by his advisor, Jens Mache. Please feel free to contact Ben (<glick@lclark.edu>) if you have any questions, comments or suggestions.

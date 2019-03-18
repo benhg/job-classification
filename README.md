@@ -25,10 +25,11 @@ Additionally, there is one considerable restriction on what separates just any o
 ## What are some next steps?
 
 After we get the classification working, the next steps are pretty clear. We would like to:
-    - Develop add-ons to schedulers (SLURM, etc) that allow us to use our classifications with existing HPC software
-    - Make our model learn from its mistakes (have it profile jobs it classifies and check itself)
-    - Experiment with things like predicting WHEN jobs are going to be scheduled rather than just how they'll behave (scheduling is trivial if you know the future :) )
-    - Expand to more languages (with less easily accessible ASTs)
+
+- Develop add-ons to schedulers (SLURM, etc) that allow us to use our classifications with existing HPC software
+- Make our model learn from its mistakes (have it profile jobs it classifies and check itself)
+- Experiment with things like predicting WHEN jobs are going to be scheduled rather than just how they'll behave (scheduling is trivial if you know the future :) )
+- Expand to more languages (with less easily accessible ASTs)
 
 ## Who are we?
 

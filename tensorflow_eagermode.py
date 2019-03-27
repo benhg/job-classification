@@ -15,7 +15,6 @@ Step: 0700  loss= 0.260833085  accuracy= 0.8945
 Step: 0800  loss= 0.260931998  accuracy= 0.8961
 Step: 0900  loss= 0.170744628  accuracy= 0.9391
 Step: 1000  loss= 0.152507424  accuracy= 0.9456
-Traceback (most recent call last):
 
 """
 
